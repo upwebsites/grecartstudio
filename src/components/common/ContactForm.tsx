@@ -31,7 +31,7 @@ const ContactForm: React.FC = () => {
 
     try {
       const response = await fetch(
-        'https://script.google.com/macros/s/AKfycbzlWrwc4xD16pYL56lkb2onXSFWUTBw6q4Qt5xfNHER_bY1hoWSaOVJ0g6CYj01khaQQQ/exec',
+        'https://script.google.com/macros/s/AKfycbzU2VxrNECLsuX4onXFB_W9vlsnqdfZflD7uTWjk77myTwc6yirHrW0cB-ZZpNupUuMZg/exec',
         {
           method: 'POST',
           headers: {
