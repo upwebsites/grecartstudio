@@ -73,6 +73,16 @@ const Navbar: React.FC = () => {
             Portfolio
           </NavLink>
           <NavLink
+            to="/come-lavoriamo"
+            className={({ isActive }) =>
+              `font-medium hover:text-primary-500 transition-colors ${
+                isActive ? 'text-primary-500 link-hover after:w-full' : 'text-neutral-700 link-hover'
+              }`
+            }
+          >
+            Come Lavoriamo
+          </NavLink>
+          <NavLink
             to="/contatti"
             className={({ isActive }) =>
               `font-medium hover:text-primary-500 transition-colors ${
@@ -137,6 +147,15 @@ const Navbar: React.FC = () => {
             onClick={closeMenu}
           >
             Portfolio
+          </NavLink>
+          <NavLink
+            to="/come-lavoriamo"
+            className={({ isActive }) =>
+              `text-xl font-medium py-2 ${isActive ? 'text-primary-500' : 'text-neutral-700'}`
+            }
+            onClick={closeMenu}
+          >
+            Come Lavoriamo
           </NavLink>
           <NavLink
             to="/contatti"

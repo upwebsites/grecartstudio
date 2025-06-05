@@ -17,29 +17,57 @@ const ContactForm: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+
+    const dataToSend = {
+      nome: formData.name,
+      email: formData.email,
+      telefono: formData.phone,
+      servizio: formData.subject,
+      messaggio: formData.message,
+    };
+
+    try {
+      const response = await fetch(
+        'https://script.google.com/macros/s/AKfycbzlWrwc4xD16pYL56lkb2onXSFWUTBw6q4Qt5xfNHER_bY1hoWSaOVJ0g6CYj01khaQQQ/exec',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataToSend),
+        }
+      );
+      const result = await response.json();
+
+      if (result.result === 'success') {
+        alert('Messaggio inviato con successo! Ti ricontatteremo al più presto.');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: '',
+        });
+        setSubmitStatus('success');
+      } else {
+        alert('Si è verificato un errore durante l\'invio. Riprova più tardi.');
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      alert('Si è verificato un errore di rete. Riprova più tardi.');
+      setSubmitStatus('error');
+    } finally {
       setIsSubmitting(false);
-      setSubmitStatus('success');
-      
-      // Reset form after successful submission
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
-      });
-      
       // Clear success message after 5 seconds
-      setTimeout(() => {
-        setSubmitStatus(null);
-      }, 5000);
-    }, 1500);
+      if (submitStatus === 'success') {
+        setTimeout(() => {
+          setSubmitStatus(null);
+        }, 5000);
+      }
+    }
   };
 
   return (
