@@ -13,7 +13,7 @@ const ComeLavoriamoPage: React.FC = () => {
         <div className="container max-w-2xl mx-auto space-y-16 py-8">
           <div>
             <img
-              src="https://images.pexels.com/photos/267614/pexels-photo-267614.jpeg?auto=compress&w=800"
+              src="/images/comelavoriamo/prestampa.webp"
               alt="Prestampa laboratorio creativo"
               className="rounded-lg shadow-lg w-full h-auto object-cover mb-6"
               style={{ maxHeight: 260, objectFit: 'cover' }}
@@ -30,7 +30,7 @@ const ComeLavoriamoPage: React.FC = () => {
           <div>
             <h2 className="text-2xl font-bold mb-4 text-primary-800">Creatività & Strategia: il nostro carburante</h2>
             <img
-              src="https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&w=800"
+              src="/images/comelavoriamo/creativita.png"
               alt="Team creativo in riunione"
               className="rounded-lg shadow-lg w-full h-auto object-cover mb-6"
               style={{ maxHeight: 260, objectFit: 'cover' }}
@@ -43,7 +43,7 @@ const ComeLavoriamoPage: React.FC = () => {
 
           <div>
             <img
-              src="https://images.pexels.com/photos/209232/pexels-photo-209232.jpeg?auto=compress&w=800"
+              src="/images/comelavoriamo/rotoffset.jpg"
               alt="Stampa roto-offset in azione"
               className="rounded-lg shadow-lg w-full h-auto object-cover mb-6"
               style={{ maxHeight: 260, objectFit: 'cover' }}
@@ -58,7 +58,7 @@ const ComeLavoriamoPage: React.FC = () => {
           <div>
             <h2 className="text-2xl font-bold mb-4 text-primary-800">Stampa Offset: precisione, eleganza, impatto</h2>
             <img
-              src="https://images.pexels.com/photos/209234/pexels-photo-209234.jpeg?auto=compress&w=800"
+              src="/images/comelavoriamo/offset.jpg"
               alt="Stampa offset su carta e cartone"
               className="rounded-lg shadow-lg w-full h-auto object-cover mb-6"
               style={{ maxHeight: 260, objectFit: 'cover' }}
@@ -70,7 +70,7 @@ const ComeLavoriamoPage: React.FC = () => {
 
           <div>
             <img
-              src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&w=800"
+              src="/images/comelavoriamo/gdo.jpg"
               alt="Gestione dati e grafica per la GDO"
               className="rounded-lg shadow-lg w-full h-auto object-cover mb-6"
               style={{ maxHeight: 260, objectFit: 'cover' }}
@@ -86,7 +86,7 @@ const ComeLavoriamoPage: React.FC = () => {
           <div>
             <h2 className="text-2xl font-bold mb-4 text-primary-800">Volantini Promozionali: milioni di copie, un solo cuore creativo</h2>
             <img
-              src="https://images.pexels.com/photos/267614/pexels-photo-267614.jpeg?auto=compress&w=800"
+              src="/images/comelavoriamo/volantini.jpg"
               alt="Volantini promozionali in stampa"
               className="rounded-lg shadow-lg w-full h-auto object-cover mb-6"
               style={{ maxHeight: 260, objectFit: 'cover' }}
@@ -99,7 +99,7 @@ const ComeLavoriamoPage: React.FC = () => {
 
           <div>
             <img
-              src="https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&w=800"
+              src="/images/comelavoriamo/allestimento.jpg"
               alt="Allestimento punto vendita"
               className="rounded-lg shadow-lg w-full h-auto object-cover mb-6"
               style={{ maxHeight: 260, objectFit: 'cover' }}
@@ -113,7 +113,7 @@ const ComeLavoriamoPage: React.FC = () => {
 
           <div>
             <img
-              src="https://images.pexels.com/photos/1181676/pexels-photo-1181676.jpeg?auto=compress&w=800"
+              src="/images/comelavoriamo/ecommerce.jpg"
               alt="Siti web e e-commerce design"
               className="rounded-lg shadow-lg w-full h-auto object-cover mb-6"
               style={{ maxHeight: 260, objectFit: 'cover' }}

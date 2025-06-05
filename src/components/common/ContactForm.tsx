@@ -8,72 +8,28 @@ const ContactForm: React.FC = () => {
     subject: '',
     message: '',
   });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<null | 'success' | 'error'>(null);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    const dataToSend = {
-      nome: formData.name,
-      email: formData.email,
-      telefono: formData.phone,
-      servizio: formData.subject,
-      messaggio: formData.message,
-    };
-
-    try {
-      const response = await fetch(
-        'https://script.google.com/macros/s/AKfycbzU2VxrNECLsuX4onXFB_W9vlsnqdfZflD7uTWjk77myTwc6yirHrW0cB-ZZpNupUuMZg/exec',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(dataToSend),
-        }
-      );
-      const result = await response.json();
-
-      console.log(result);
-
-      if (result.result === 'success') {
-        alert('Messaggio inviato con successo! Ti ricontatteremo al più presto.');
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: '',
-        });
-        setSubmitStatus('success');
-      } else {
-        alert('Si è verificato un errore durante l\'invio. Riprova più tardi.');
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      alert('Si è verificato un errore di rete. Riprova più tardi.');
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-      // Clear success message after 5 seconds
-      if (submitStatus === 'success') {
-        setTimeout(() => {
-          setSubmitStatus(null);
-        }, 5000);
-      }
-    }
+    setShowSuccess(true);
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      subject: '',
+      message: '',
+    });
+    setTimeout(() => setShowSuccess(false), 5000);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form className="space-y-6" onSubmit={handleSubmit}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="block mb-2 font-medium text-neutral-700">
@@ -134,7 +90,7 @@ const ContactForm: React.FC = () => {
             required
             className="w-full px-4 py-3 rounded-md border border-neutral-300 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 outline-none transition bg-white"
           >
-            <option value="" disabled>Seleziona un servizio</option>
+            <option value="">Seleziona un servizio</option>
             <option value="Grafica Pubblicitaria">Grafica Pubblicitaria</option>
             <option value="Grafica Editoriale">Grafica Editoriale</option>
             <option value="Packaging">Packaging</option>
@@ -161,34 +117,17 @@ const ContactForm: React.FC = () => {
         ></textarea>
       </div>
 
-      {submitStatus === 'success' && (
-        <div className="p-4 bg-green-100 text-green-700 rounded-md">
-          Grazie per averci contattato! Ti risponderemo al più presto.
-        </div>
-      )}
-
-      {submitStatus === 'error' && (
-        <div className="p-4 bg-red-100 text-red-700 rounded-md">
-          Si è verificato un errore. Riprova più tardi o contattaci direttamente.
+      {showSuccess && (
+        <div className="p-4 bg-green-100 text-green-700 rounded-md text-center">
+          Grazie per averci contattato! Il tuo messaggio è stato inviato correttamente.
         </div>
       )}
 
       <button
         type="submit"
-        disabled={isSubmitting}
         className="btn btn-primary w-full md:w-auto"
       >
-        {isSubmitting ? (
-          <span className="flex items-center justify-center">
-            <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white\" xmlns="http://www.w3.org/2000/svg\" fill="none\" viewBox="0 0 24 24">
-              <circle className="opacity-25\" cx="12\" cy="12\" r="10\" stroke="currentColor\" strokeWidth="4"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            Invio in corso...
-          </span>
-        ) : (
-          'Invia messaggio'
-        )}
+        Invia messaggio
       </button>
     </form>
   );
