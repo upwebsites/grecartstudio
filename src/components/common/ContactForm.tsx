@@ -42,6 +42,8 @@ const ContactForm: React.FC = () => {
       );
       const result = await response.json();
 
+      console.log(result);
+
       if (result.result === 'success') {
         alert('Messaggio inviato con successo! Ti ricontatteremo al più presto.');
         setFormData({
