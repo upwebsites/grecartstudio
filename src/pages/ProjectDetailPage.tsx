@@ -47,7 +47,8 @@ const ProjectDetailPage: React.FC = () => {
       {/* Project Gallery / PDF Flipbook */}
       <section className="section bg-neutral-50">
         <div className="container">
-          {project.pdfUrls && project.pdfUrls.length > 0 ? (
+          {/* Visualizza prima i PDF */}
+          {project.pdfUrls && project.pdfUrls.length > 0 && (
             <>
               {/* Selettore PDF (con pulsanti o select semplice) */}
               <div className="mb-4 flex gap-3 flex-wrap">
@@ -63,10 +64,15 @@ const ProjectDetailPage: React.FC = () => {
               </div>
               <PdfFlipbook url={project.pdfUrls[activePdf]} />
             </>
-          ) : project.pdfUrl ? (
+          )}
+
+          {!project.pdfUrls && project.pdfUrl && (
             <PdfFlipbook url={project.pdfUrl} title={project.title} />
-          ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          )}
+
+          {/* Visualizza sempre le immagini se presenti */}
+          {project.imageUrls && project.imageUrls.length > 0 && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10">
               {project.imageUrls.map((image, index) => (
                 <div key={index} className="overflow-hidden rounded-lg shadow-custom">
                   <img

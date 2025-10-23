@@ -19,15 +19,15 @@ const ContactPage: React.FC = () => {
       {/* Contact Section */}
       <section className="section" id="contact">
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Contact Info */}
-            <div>
-              <SectionTitle 
-                title="Parliamo del tuo progetto" 
-                subtitle="Compila il form per raccontarci la tua idea o contattaci direttamente tramite i canali indicati"
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            {/* Colonna sinistra: titolo + info */}
+            <div className="flex flex-col h-full">
+              <SectionTitle
+                title="Parliamo del tuo progetto"
+                subtitle="Contattaci telefonicamente, via email o vieni a trovarci in sede. Siamo a disposizione per ogni esigenza o informazione."
+                className="mb-8"
               />
-              
-              <div className="space-y-8 mb-12">
+              <div className="space-y-8 flex-1">
                 <div className="flex items-start">
                   <div className="mr-4 p-3 bg-primary-100 text-primary-500 rounded-full">
                     <MapPin size={24} />
@@ -40,7 +40,6 @@ const ContactPage: React.FC = () => {
                     </p>
                   </div>
                 </div>
-                
                 <div className="flex items-start">
                   <div className="mr-4 p-3 bg-primary-100 text-primary-500 rounded-full">
                     <Phone size={24} />
@@ -54,7 +53,6 @@ const ContactPage: React.FC = () => {
                     </p>
                   </div>
                 </div>
-                
                 <div className="flex items-start">
                   <div className="mr-4 p-3 bg-primary-100 text-primary-500 rounded-full">
                     <Mail size={24} />
@@ -68,7 +66,6 @@ const ContactPage: React.FC = () => {
                     </p>
                   </div>
                 </div>
-                
                 <div className="flex items-start">
                   <div className="mr-4 p-3 bg-primary-100 text-primary-500 rounded-full">
                     <Clock size={24} />
@@ -82,28 +79,22 @@ const ContactPage: React.FC = () => {
                   </div>
                 </div>
               </div>
-              
-              {/* Google Maps */}
-              <div className="h-[300px] bg-neutral-200 rounded-lg overflow-hidden">
-                <iframe 
+            </div>
+            {/* Colonna destra: mappa allineata alle info a sinistra */}
+            <div className="flex h-full items-stretch">
+              <div className="w-full h-full min-h-[350px] md:min-h-0 md:h-full bg-neutral-200 rounded-lg overflow-hidden flex-1">
+                {/* Per allineamento perfetto, la mappa occupa 100% altezza genitore */}
+                <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24097.984455729404!2d14.21517!3d40.85177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b0a3c328c13fd%3A0xedd23d0bd709e293!2sNapoli%20NA!5e0!3m2!1sit!2sit!4v1684144200547!5m2!1sit!2sit"
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
-                  allowFullScreen 
-                  loading="lazy" 
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, minHeight: "350px", height: "100%" }}
+                  allowFullScreen
+                  loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Mappa della sede di Grecart Studio"
                 ></iframe>
               </div>
-            </div>
-            
-            {/* Contact Form */}
-            <div className="bg-white rounded-lg shadow-custom p-8">
-              <h3 className="text-2xl font-semibold text-primary-800 mb-6">
-                Inviaci un messaggio
-              </h3>
-              <ContactForm />
             </div>
           </div>
         </div>

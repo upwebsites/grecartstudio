@@ -113,8 +113,29 @@ const madeInRome: Project = {
   title: "Made In Rome",
   description: "Catalogo PDF per il cliente Made In Rome.",
   thumbUrl: "/images/loghilavori/Logo_MadeInRome.png",
-  imageUrls: [],
+  imageUrls: [
+    "/images/portfolio/madeinrome1.jpeg",
+    "/images/portfolio/madeinrome2.jpeg",
+    "/images/portfolio/madeinrome3.jpeg",
+    "/images/portfolio/madeinrome4.jpeg",
+    "/images/portfolio/madeinrome5.jpeg"
+  ],
   pdfUrl: "/PDF/MadeInRome_Tours_Catalogue_Complete_DoublePage_Preview.pdf"
+};
+
+const villaBelvedere: Project = {
+  id: "villa-belvedere",
+  title: "Villa Belvedere",
+  description: "Rappresentazione fotografica e grafica del progetto Villa Belvedere.",
+  thumbUrl: "/images/villabelvedere01.png",
+  imageUrls: [
+    "/images/villabelvedere01.png",
+    "/images/villabelvedere02.png",
+    "/images/villabelvedere03.png",
+    "/images/villabelvedere04.png",
+    "/images/villabelvedere05.png",
+    "/images/villabelvedere06.png"
+  ]
 };
 
 export const allProjects: Project[] = [
@@ -128,5 +149,6 @@ export const allProjects: Project[] = [
   litiberi,
   pac,
   resource,
-  madeInRome
+  madeInRome,
+  villaBelvedere
 ];
