@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -9,12 +9,19 @@ import PortfolioPage from './pages/PortfolioPage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
 import ContactPage from './pages/ContactPage';
 import ComeLavoriamoPage from './pages/ComeLavoriamoPage';
+import PopupLatestWorks from './components/common/PopupLatestWorks';
 
 function App() {
+  const [popupOpen, setPopupOpen] = useState(true);
+
+  // Optional: se non vuoi che riappare più dopo chiusura puoi usare localStorage o sessionStorage
+  // altrimenti popup si riapre a ogni refresh del sito.
+
   return (
     <>
       <ScrollToTop />
       <Navbar />
+      <PopupLatestWorks open={popupOpen} onClose={() => setPopupOpen(false)} />
       <main className="min-h-screen pt-20">
         <Routes>
           <Route path="/" element={<HomePage />} />
