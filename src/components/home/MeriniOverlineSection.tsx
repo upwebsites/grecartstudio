@@ -70,49 +70,45 @@ const MeriniOverlineSection: React.FC = () => {
 
           </div>
 
-          {/* Visual Showcase - Product Mockup */}
-          <div className="lg:col-span-5 flex justify-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative w-full max-w-[420px]"
-            >
-              {/* Glowing ring backdrop */}
-              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-accent/20 to-emerald-500/20 blur-xl opacity-60 group-hover:opacity-100 transition duration-1000"></div>
-              
-              <div className="relative bg-dark-100/90 border border-white/10 rounded-2xl p-4 md:p-6 shadow-glass overflow-hidden">
-                <motion.div 
-                  className="aspect-square w-full rounded-xl overflow-hidden bg-dark-200"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <img 
-                    src="/images/merini_cosmetics.png" 
-                    alt="Art Direction e Packaging Design di Grecart Studio per Over Line" 
-                    className="w-full h-full object-cover"
-                  />
-                </motion.div>
-                
-                {/* Branding Floating Badge */}
-                <div className="mt-6 flex justify-between items-center bg-dark/60 rounded-xl p-4 border border-white/5 backdrop-blur-md">
-                  <div className="flex items-center gap-3">
-                    <img 
-                      src="/LoghiLavori/Logo_Merini.png" 
-                      alt="Logo Merini" 
-                      className="h-8 object-contain bg-white/5 p-1 rounded-sm border border-white/10"
-                    />
-                    <div>
-                      <h4 className="text-white text-xs font-semibold uppercase tracking-wider">Grecart Art Direction</h4>
-                      <p className="text-emerald-400 text-[10px] uppercase tracking-widest font-light font-heading">Brand Identity & Packaging</p>
-                    </div>
-                  </div>
-                  <span className="text-xs text-accent font-light">Success Case</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+           {/* Art Direction Badge */}
+           <div className="lg:col-span-5 flex items-center justify-center">
+             <motion.div
+               initial={{ opacity: 0, x: 20 }}
+               whileInView={{ opacity: 1, x: 0 }}
+               viewport={{ once: true }}
+               transition={{ duration: 0.8, delay: 0.3 }}
+               className="relative group"
+             >
+               {/* Decorative Glow */}
+               <div className="absolute -inset-4 bg-accent/10 rounded-full blur-2xl group-hover:bg-accent/20 transition-all duration-500"></div>
+               
+               <div className="relative flex flex-col items-center text-center p-8 rounded-3xl border border-accent/30 bg-gradient-to-b from-white/5 to-transparent backdrop-blur-sm shadow-2xl">
+                 <div className="relative mb-6">
+                   <div className="absolute -inset-2 bg-accent/20 rounded-full blur-md animate-pulse"></div>
+                   <img 
+                     src="/LoghiLavori/Logo_Merini.png" 
+                     alt="Logo Merini" 
+                     className="relative h-20 w-20 object-contain bg-white/10 p-3 rounded-full border border-white/20 shadow-inner"
+                   />
+                 </div>
+                 
+                 <div className="space-y-2">
+                   <h4 className="text-white text-sm font-semibold uppercase tracking-[0.2em]">Grecart Art Direction</h4>
+                   <div className="flex items-center justify-center gap-2">
+                     <span className="h-[1px] w-4 bg-accent/50"></span>
+                     <p className="text-emerald-400 text-[10px] uppercase tracking-widest font-light font-heading">
+                       Brand Identity & Packaging
+                     </p>
+                     <span className="h-[1px] w-4 bg-accent/50"></span>
+                   </div>
+                 </div>
+                 
+                 <div className="mt-6 px-4 py-1 rounded-full border border-accent/40 bg-accent/10 text-accent text-[10px] uppercase tracking-widest font-medium">
+                   Success Case
+                 </div>
+               </div>
+             </motion.div>
+           </div>
 
         </div>
 
