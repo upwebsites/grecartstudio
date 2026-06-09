@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook, Linkedin, Twitter } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Instagram } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const ContactPage: React.FC = () => {
@@ -29,10 +29,7 @@ const ContactPage: React.FC = () => {
   ];
 
   const socialLinks = [
-    { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+    { icon: Instagram, href: "https://www.instagram.com/grecartstudio/", label: "Instagram" },
   ];
 
   return (

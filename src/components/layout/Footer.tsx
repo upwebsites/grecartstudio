@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Palette, MapPin, Phone, Mail, Instagram, Facebook, Linkedin, Twitter } from 'lucide-react';
+import { Palette, MapPin, Phone, Mail, Instagram } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -22,21 +22,9 @@ const Footer: React.FC = () => {
               Trasformiamo le tue idee in soluzioni creative che comunicano, ispirano e convertono. L'eccellenza del design al servizio del tuo brand.
             </p>
             <div className="flex space-x-5">
-              <a href="https://instagram.com" className="text-light/50 hover:text-accent transition-colors">
+              <a href="https://www.instagram.com/grecartstudio/" className="text-light/50 hover:text-accent transition-colors">
                 <Instagram size={22} />
                 <span className="sr-only">Instagram</span>
-              </a>
-              <a href="https://facebook.com" className="text-light/50 hover:text-accent transition-colors">
-                <Facebook size={22} />
-                <span className="sr-only">Facebook</span>
-              </a>
-              <a href="https://linkedin.com" className="text-light/50 hover:text-accent transition-colors">
-                <Linkedin size={22} />
-                <span className="sr-only">LinkedIn</span>
-              </a>
-              <a href="https://twitter.com" className="text-light/50 hover:text-accent transition-colors">
-                <Twitter size={22} />
-                <span className="sr-only">Twitter</span>
               </a>
             </div>
           </div>
