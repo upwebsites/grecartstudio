@@ -29,35 +29,48 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, size = '1x1' }) => {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6 }}
-      whileHover={{ scale: 0.98 }}
-      whileTap={{ scale: 0.95 }}
       className={`group relative ${sizeClasses[size]} h-full`}
     >
-      
-      <Link
-        to={`/tutti-i-lavori/${project.id}`}
-        className={`block relative overflow-hidden bg-dark-200 ring-1 ring-inset ring-light/10 shadow-glass h-full w-full rounded-none group flex flex-col justify-end transition-all duration-300 ${ratioClasses[size]}`}
+      <motion.div
+        whileHover={{ scale: 0.98 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ duration: 0.2 }}
+        className="h-full w-full"
       >
-        <div className="absolute inset-0 p-8 flex items-center justify-center">
-          {!imageError ? (
-            <img
-              src={project.thumbUrl}
-              alt={project.title}
-              className="w-[80%] h-[80%] object-contain transition-transform duration-700 group-hover:scale-105"
-              onError={() => setImageError(true)}
-            />
-          ) : (
-            <div className="w-full h-full bg-dark-100 flex items-center justify-center">
-              <span className="text-light/50 text-sm font-light tracking-widest uppercase">{project.title}</span>
-            </div>
-          )}
-        </div>
-        
-        {/* Subtle vignette and text reveal */}
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-dark/95 via-dark/40 to-transparent p-6 flex flex-col justify-end transform translate-y-6 opacity-80 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-          <h3 className="text-white text-xl font-heading mb-0">{project.title}</h3>
-        </div>
-      </Link>
+        <Link
+          to={`/tutti-i-lavori/${project.id}`}
+           className={`block relative overflow-hidden bg-dark-200 ring-1 ring-inset ring-light/10 shadow-glass h-full w-full rounded-none group flex flex-col justify-end transition-all duration-300 group-hover:ring-0 group-hover:bg-dark-100 ${ratioClasses[size]}`}
+        >
+          <div className="absolute inset-0 flex items-center justify-center">
+            {!imageError ? (
+              <img
+                src={project.thumbUrl}
+                alt={project.title}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className="w-full h-full bg-dark-100 flex items-center justify-center">
+                <span className="text-light/50 text-sm font-light tracking-widest uppercase">{project.title}</span>
+              </div>
+            )}
+          </div>
+          
+        {/* Dark overlay and centered text reveal */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
+            <h3 className="text-white text-xl font-heading opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {project.title}
+            </h3>
+          </div>
+
+          {/* Bottom gradient and client name */}
+          <div className="absolute bottom-0 left-0 right-0 p-4 pb-3 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none">
+            <span className="text-yellow-400 text-[10px] font-bold uppercase tracking-widest opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+              {project.title}
+            </span>
+          </div>
+        </Link>
+      </motion.div>
     </motion.div>
   );
 };

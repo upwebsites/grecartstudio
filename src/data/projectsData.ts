@@ -14,7 +14,7 @@ const am: Project = {
   id: "am",
   title: "AM",
   description: "Materiale PDF per il cliente AM.",
-  thumbUrl: "/images/loghilavori/Logo_AM.png",
+  thumbUrl: "/copertine_projectcard/am.png",
   imageUrls: [],
   pdfUrl: "/PDF/AM_01_2026.pdf"
 };
@@ -23,7 +23,7 @@ const bimarket: Project = {
   id: "bimarket",
   title: "Bimarket",
   description: "Materiale PDF per Bimarket.",
-  thumbUrl: "/images/loghilavori/Logo_Bimarket.png",
+  thumbUrl: "/copertine_projectcard/bimarket.png",
   imageUrls: [],
   pdfUrl: "/PDF/Bimarket 2025_17.pdf"
 };
@@ -32,7 +32,7 @@ const bitar: Project = {
   id: "bitar",
   title: "Bitar",
   description: "Materiale PDF per Bitar.",
-  thumbUrl: "/images/loghilavori/Logo_Bitar.png",
+  thumbUrl: "/copertine_projectcard/bitar.png",
   imageUrls: [],
   pdfUrl: "/PDF/BITAR_COMPLETO.pdf"
 };
@@ -41,7 +41,7 @@ const delizie: Project = {
   id: "le-delizie-del-sud",
   title: "Le Delizie Del Sud",
   description: "Materiale promozionale integrato: CANVASS, Progetto Pulito, PET FOOD e Supermercati accorpati per il brand Le delizie del sud.",
-  thumbUrl: "/images/loghilavori/Logo_Delizie.png",
+  thumbUrl: "/copertine_projectcard/ledeliziedelsud.png",
   imageUrls: [],
   pdfUrls: [
     "/PDF/CANVASS_2026_01_BASSA.pdf",
@@ -55,7 +55,7 @@ const merini: Project = {
   id: "merini-overline",
   title: "Merini Overline",
   description: "Catalogo completo Merini Overline: Linea Consumer, Linea Professional Altri Prodotti, Linea Professional Shampoo e Mockup Overline Academy.",
-  thumbUrl: "/LoghiLavori/Logo_Merini.png",
+  thumbUrl: "/copertine_projectcard/merinioverline.png",
   imageUrls: [],
   pdfUrls: [
     "/PDF/MERINI_LINEA_CONSUMER.pdf",
@@ -69,7 +69,7 @@ const diBlasio: Project = {
   id: "di-blasio",
   title: "Di Blasio",
   description: "Materiale PDF per Di Blasio.",
-  thumbUrl: "/images/loghilavori/Logo_DiBlasio.png",
+  thumbUrl: "/copertine_projectcard/diblasio.png",
   imageUrls: [],
   pdfUrl: "/PDF/DI_BLASIO_2026_01.pdf"
 };
@@ -78,7 +78,7 @@ const drowssap: Project = {
   id: "drowssap",
   title: "Drowssap",
   description: "Materiale PDF per Drowssap.",
-  thumbUrl: "/images/loghilavori/Logo_Drowssap.png",
+  thumbUrl: "/copertine_projectcard/drowssap.png",
   imageUrls: [],
   pdfUrl: "/PDF/DROWSSAP_Brochure60x20_REV03_bozza.pdf"
 };
@@ -87,7 +87,7 @@ const frescohouse: Project = {
   id: "frescohouse",
   title: "FrescoHouse",
   description: "Materiale PDF per FrescoHouse.",
-  thumbUrl: "/images/loghilavori/Logo_Frescohouse.png",
+  thumbUrl: "/copertine_projectcard/frescohouse.png",
   imageUrls: [],
   pdfUrl: "/PDF/IPERFRESCO_2026_01.pdf"
 };
@@ -96,7 +96,7 @@ const litiberi: Project = {
   id: "litiberi",
   title: "Litiberi",
   description: "Entrambi i lavori per Litiberi.",
-  thumbUrl: "/images/loghilavori/Logo_Litiberi.png",
+  thumbUrl: "/copertine_projectcard/ltiiberi.png",
   imageUrls: [],
   pdfUrls: [
     "/PDF/LITIBERI_6x3 litiberi.pdf",
@@ -108,7 +108,7 @@ const pac: Project = {
   id: "pac",
   title: "PAC",
   description: "Materiale PDF per PAC.",
-  thumbUrl: "/images/loghilavori/Logo_Pac.png",
+  thumbUrl: "/copertine_projectcard/pac.png",
   imageUrls: [],
   pdfUrl: "/PDF/PAC CASH_2026_01_.pdf"
 };
@@ -117,7 +117,7 @@ const resource: Project = {
   id: "resourceconsulting",
   title: "ResourceConsulting",
   description: "Materiale PDF per ResourceConsulting.",
-  thumbUrl: "/images/loghilavori/Logo_Resource.png",
+  thumbUrl: "/copertine_projectcard/resourceconsulting.png",
   imageUrls: [],
   pdfUrl: "/PDF/ResourceConsulting_Catalogo.pdf"
 };
@@ -126,7 +126,7 @@ const madeInRome: Project = {
   id: "made-in-rome",
   title: "Made In Rome",
   description: "Catalogo PDF per il cliente Made In Rome.",
-  thumbUrl: "/images/loghilavori/Logo_MadeInRome.png",
+  thumbUrl: "/copertine_projectcard/madeinrome.png",
   imageUrls: [
     "/images/portfolio/madeinrome1.jpeg",
     "/images/portfolio/madeinrome2.jpeg",
@@ -156,7 +156,7 @@ const negozietto: Project = {
   id: "il-negozietto",
   title: "Il Negozietto",
   description: "Materiale PDF per Il Negozietto.",
-  thumbUrl: "/LoghiLavori/Logo_IlNegozietto.png",
+  thumbUrl: "/copertine_projectcard/ilnegozietto.png",
   imageUrls: [],
   pdfUrl: "/PDF/IL NEGOZIETTO_05_2026.pdf"
 };
