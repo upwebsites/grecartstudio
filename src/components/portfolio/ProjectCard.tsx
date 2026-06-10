@@ -5,10 +5,23 @@ import { motion } from 'framer-motion';
 
 interface ProjectCardProps {
   project: Project;
+  size?: '1x1' | '2x1' | '2x2';
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, size = '1x1' }) => {
   const [imageError, setImageError] = useState(false);
+
+  const sizeClasses = {
+    '1x1': 'col-span-1 row-span-1',
+    '2x1': 'col-span-2 row-span-1',
+    '2x2': 'col-span-2 row-span-2',
+  };
+
+  const ratioClasses = {
+    '1x1': 'aspect-square',
+    '2x1': 'aspect-[2/1]',
+    '2x2': 'aspect-square',
+  };
 
   return (
     <motion.div
@@ -16,11 +29,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6 }}
-      className="group"
+      whileHover={{ scale: 0.98 }}
+      whileTap={{ scale: 0.95 }}
+      className={`group relative ${sizeClasses[size]} h-full`}
     >
+      
       <Link
         to={`/tutti-i-lavori/${project.id}`}
-        className="block relative overflow-hidden bg-dark-200 border border-light/5 shadow-glass h-[400px] rounded-sm group flex flex-col justify-end"
+        className={`block relative overflow-hidden bg-dark-200 ring-1 ring-inset ring-light/10 shadow-glass h-full w-full rounded-none group flex flex-col justify-end transition-all duration-300 ${ratioClasses[size]}`}
       >
         <div className="absolute inset-0 p-8 flex items-center justify-center">
           {!imageError ? (
@@ -39,9 +55,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         
         {/* Subtle vignette and text reveal */}
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-dark/95 via-dark/40 to-transparent p-6 flex flex-col justify-end transform translate-y-6 opacity-80 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-          <p className="text-accent text-[10px] uppercase tracking-[0.2em] font-medium mb-1">
-            Studio Lavoro
-          </p>
           <h3 className="text-white text-xl font-heading mb-0">{project.title}</h3>
         </div>
       </Link>

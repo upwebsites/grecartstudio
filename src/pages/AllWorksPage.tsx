@@ -1,9 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { allProjects } from '../data/projectsData';
 import { motion } from 'framer-motion';
+import ProjectCard from '../components/portfolio/ProjectCard';
 
 const AllWorksPage: React.FC = () => {
+  const [cols, setCols] = useState(6);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 768) setCols(2);
+      else if (width < 1024) setCols(4);
+      else setCols(6);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const getProjectSize = (index: number, total: number) => {
+    const project = allProjects[index];
+    if (project.id === 'villa-belvedere' || project.id === 'il-negozietto') return '2x1';
+
+    let size: '1x1' | '2x1' | '2x2';
+    if (index % 4 === 0) size = '2x2';
+    else if (index % 3 === 0) size = '2x1';
+    else size = '1x1';
+
+    if (index === total - 1) {
+      const currentArea = allProjects.reduce((acc, p, i) => {
+        if (i === index) return acc;
+        if (p.id === 'villa-belvedere' || p.id === 'il-negozietto') return acc + 2;
+        const s = (i % 4 === 0) ? 4 : (i % 3 === 0) ? 2 : 1;
+        return acc + s;
+      }, 0);
+
+      const remainder = currentArea % cols;
+      const needed = (cols - remainder) % cols;
+
+      if (needed === 1) return '1x1';
+      if (needed === 2) return '2x1';
+      if (needed === 4) return '2x2';
+      return size;
+    }
+
+    return size;
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -40,41 +85,19 @@ const AllWorksPage: React.FC = () => {
       {/* Portfolio Gallery */}
       <section className="section bg-dark-100">
         <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 md:gap-x-12 md:gap-y-16 justify-items-center">
+          <div 
+            className="grid gap-2" 
+            style={{ 
+              gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+              gridAutoFlow: 'dense' 
+            }}
+          >
             {allProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: index * 0.05 }}
-              >
-                <Link
-                  to={`/tutti-i-lavori/${project.id}`}
-                  className="group flex flex-col items-center w-[140px]"
-                >
-                  <div className="relative w-full h-[180px] bg-dark-200 overflow-hidden rounded-md border border-light/5 shadow-glass transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_10px_40px_rgba(212,175,55,0.15)] flex justify-center items-center">
-                    <img
-                      src={project.thumbUrl}
-                      alt={project.title}
-                      className="w-[85%] h-[85%] object-contain transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-dark/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                      <span className="text-white bg-accent/80 backdrop-blur-sm p-3 rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-300">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
-                      </span>
-                    </div>
-                  </div>
-                  <div className="mt-5 text-center">
-                    <h3 className="text-xs uppercase tracking-widest font-semibold text-light/80 group-hover:text-accent transition-colors">
-                      {project.title}
-                    </h3>
-                  </div>
-                </Link>
-              </motion.div>
+              <ProjectCard 
+                key={project.id} 
+                project={project} 
+                size={getProjectSize(index, allProjects.length)} 
+              />
             ))}
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Menu, X, Palette } from 'lucide-react';
+import { Menu, X, Palette, Briefcase } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar: React.FC = () => {
@@ -27,7 +27,6 @@ const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Servizi', path: '/servizi' },
-    { name: 'Tutti i Lavori', path: '/tutti-i-lavori' },
     { name: 'Come Lavoriamo', path: '/come-lavoriamo' },
     { name: 'Contatti', path: '/contatti' },
   ];
@@ -62,10 +61,17 @@ const Navbar: React.FC = () => {
               {link.name}
             </NavLink>
           ))}
-          <a
-            href="#contact"
-            className="btn btn-primary"
-            onClick={(e) => {
+           <Link
+             to="/tutti-i-lavori"
+             className="btn bg-white text-dark hover:bg-light flex items-center gap-2"
+           >
+             <Briefcase size={18} />
+             <span className="font-heading">Portfolio</span>
+           </Link>
+           <a
+             href="#contact"
+             className="btn btn-primary"
+             onClick={(e) => {
               if (window.location.pathname === '/') {
                 e.preventDefault();
                 document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -111,10 +117,18 @@ const Navbar: React.FC = () => {
                   {link.name}
                 </NavLink>
               ))}
-              <a
-                href="#contact"
-                className="btn btn-primary w-full max-w-xs mt-8"
-                onClick={(e) => {
+               <Link
+                 to="/tutti-i-lavori"
+                 className="btn bg-white text-dark hover:bg-light w-full max-w-xs mt-8 flex items-center justify-center gap-2"
+                 onClick={closeMenu}
+               >
+                 <Briefcase size={18} />
+                 <span className="font-heading">Portfolio</span>
+               </Link>
+               <a
+                 href="#contact"
+                 className="btn btn-primary w-full max-w-xs mt-4"
+                 onClick={(e) => {
                   closeMenu();
                   if (window.location.pathname === '/') {
                     e.preventDefault();

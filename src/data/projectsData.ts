@@ -65,15 +65,6 @@ const merini: Project = {
   ]
 };
 
-const carrefour: Project = {
-  id: "carrefour",
-  title: "Carrefour",
-  description: "Materiale promozionale per il cliente Carrefour.",
-  thumbUrl: "/LoghiLavori/Logo_Carrefour.png",
-  imageUrls: [],
-  pdfUrl: "/PDF/A4_CARREFOUR EXPRESS_2025_08.pdf"
-};
-
 const diBlasio: Project = {
   id: "di-blasio",
   title: "Di Blasio",
@@ -161,15 +152,6 @@ const villaBelvedere: Project = {
   ]
 };
 
-const stelleOttimo: Project = {
-  id: "3-stelle-ottimo",
-  title: "3 Stelle Ottimo",
-  description: "Materiale PDF per il cliente 3 Stelle Ottimo.",
-  thumbUrl: "/LoghiLavori/Logo_3StelleOttimo.png",
-  imageUrls: [],
-  pdfUrl: "/PDF/3STELLE_27_Dicembre_2025-11_Gennaio_2026.pdf"
-};
-
 const negozietto: Project = {
   id: "il-negozietto",
   title: "Il Negozietto",
@@ -185,7 +167,6 @@ export const allProjects: Project[] = [
   bitar,
   delizie,
   merini,
-  carrefour,
   diBlasio,
   drowssap,
   frescohouse,
@@ -194,6 +175,5 @@ export const allProjects: Project[] = [
   resource,
   madeInRome,
   villaBelvedere,
-  stelleOttimo,
   negozietto
 ];

@@ -1,10 +1,58 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ProjectCard from '../components/portfolio/ProjectCard';
 import { allProjects } from '../data/projectsData';
 import CtaSection from '../components/home/CtaSection';
 import { motion } from 'framer-motion';
 
 const PortfolioPage: React.FC = () => {
+  const [cols, setCols] = useState(6);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 768) setCols(2);
+      else if (width < 1024) setCols(4);
+      else setCols(6);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const getProjectSize = (project: any, index: number, total: number) => {
+    // Force Villa Belvedere and Il Negozietto to be large to fill space
+    if (project.id === 'villa-belvedere' || project.id === 'il-negozietto') return '2x1';
+
+    // Base asymmetric pattern
+    let size: '1x1' | '2x1' | '2x2';
+    if (index % 4 === 0) size = '2x2';
+    else if (index % 3 === 0) size = '2x1';
+    else size = '1x1';
+
+    // Correction logic for the last element to ensure "Zero-Hole"
+    if (index === total - 1) {
+      const currentArea = allProjects.reduce((acc, p, i) => {
+          if (i === index) return acc;
+          if (p.id === 'villa-belvedere' || p.id === 'il-negozietto') return acc + 2;
+          const s = (i % 4 === 0) ? 4 : (i % 3 === 0) ? 2 : 1;
+        return acc + s;
+      }, 0);
+
+      const remainder = currentArea % cols;
+      const needed = (cols - remainder) % cols;
+
+      if (needed === 1) return '1x1';
+      if (needed === 2) return '2x1';
+      if (needed === 4) return '2x2';
+      
+      // Fallback to maintain pattern if needed is not a standard size
+      return size;
+    }
+
+    return size;
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -41,9 +89,19 @@ const PortfolioPage: React.FC = () => {
       {/* Portfolio Grid */}
       <section className="section bg-dark-100 relative">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-12">
-            {allProjects.map(project => (
-              <ProjectCard key={project.id} project={project} />
+          <div 
+            className="grid gap-2" 
+            style={{ 
+              gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+              gridAutoFlow: 'dense' 
+            }}
+          >
+            {allProjects.map((project, index) => (
+              <ProjectCard 
+                key={project.id} 
+                project={project} 
+                size={getProjectSize(project, index, allProjects.length)} 
+              />
             ))}
           </div>
         </div>

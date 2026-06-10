@@ -85,8 +85,8 @@ const TrophiesSection: React.FC = () => {
       <div className="relative py-16 flex items-center justify-center">
         <div className="w-full max-w-5xl px-6">
           <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-slate-900/85 p-6 shadow-[0_40px_150px_-50px_rgba(15,23,42,0.9)]">
-            <div className="absolute -left-12 -top-12 h-64 w-64 rounded-full bg-[radial-gradient(circle_at_top_left,rgba(212,175,55,0.35),transparent_45%)] opacity-80 gradient-move pointer-events-none" />
-            <div className="absolute -right-12 -bottom-12 h-72 w-72 rounded-full bg-[radial-gradient(circle_at_bottom_right,rgba(56,189,248,0.25),transparent_45%)] opacity-70 gradient-move-2 pointer-events-none" />
+            <div className="absolute -left-12 -top-12 h-64 w-64 rounded-full bg-[radial-gradient(circle_at_top_left,rgba(212,175,55,0.35),transparent_45%)] opacity-80 pointer-events-none" />
+            <div className="absolute -right-12 -bottom-12 h-72 w-72 rounded-full bg-[radial-gradient(circle_at_bottom_right,rgba(56,189,248,0.25),transparent_45%)] opacity-70 pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-slate-950/20 pointer-events-none" />
             <div className="absolute left-10 top-10 h-20 w-20 rounded-full border border-white/10 bg-white/5 blur-2xl opacity-80 pointer-events-none" />
             <div className="absolute right-10 bottom-10 h-24 w-24 rounded-full border border-cyan-300/20 bg-cyan-400/10 blur-3xl opacity-60 pointer-events-none" />
