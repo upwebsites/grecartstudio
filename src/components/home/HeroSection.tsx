@@ -42,7 +42,7 @@ const HeroSection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            Da oltre 10 anni trasformiamo concetti in comunicazione visiva che cattura, coinvolge e converte. Rendiamo il tuo brand indimenticabile.
+            Trasformiamo concetti in comunicazione visiva che cattura, coinvolge e converte. Rendiamo il tuo brand indimenticabile.
           </motion.p>
 
           <motion.div 
