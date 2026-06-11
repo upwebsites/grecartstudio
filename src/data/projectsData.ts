@@ -168,7 +168,7 @@ const madeInRome: Project = {
   id: "made-in-rome",
   title: "Made In Rome",
   description: "Catalogo PDF per il cliente Made In Rome.",
-  thumbUrl: "/LoghiLavori/Logo_MadeInRome.png",
+  thumbUrl: "/images/loghilavori/Logo_MadeInRome.png",
   imageUrls: [
     "/scorrimento_immagini/madeinrome/MadeInRome_Tours_Catalogue_Complete_DoublePage_Preview_Pagina_1.png",
     "/scorrimento_immagini/madeinrome/MadeInRome_Tours_Catalogue_Complete_DoublePage_Preview_Pagina_2.png",
