@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Project } from '../../data/projectsData';
 import { motion } from 'framer-motion';
@@ -10,6 +10,34 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, size = '1x1' }) => {
   const [imageError, setImageError] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    let interval: number | undefined;
+
+    if (isHovering && project.imageUrls && project.imageUrls.length > 0) {
+      interval = window.setInterval(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % project.imageUrls.length);
+      }, 3000);
+    }
+
+    return () => {
+      if (interval) window.clearInterval(interval);
+    };
+  }, [isHovering, project.imageUrls]);
+
+  useEffect(() => {
+    if (isHovering && project.imageUrls && project.imageUrls.length > 0) {
+      const nextIndex = (currentImageIndex + 1) % project.imageUrls.length;
+      const nextImage = new Image();
+      nextImage.src = project.imageUrls[nextIndex];
+    }
+  }, [currentImageIndex, isHovering, project.imageUrls]);
+
+  const displayImage = isHovering && project.imageUrls && project.imageUrls.length > 0
+    ? project.imageUrls[currentImageIndex]
+    : project.thumbUrl;
 
   const sizeClasses = {
     '1x1': 'col-span-1 row-span-1',
@@ -39,14 +67,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, size = '1x1' }) => {
       >
         <Link
           to={`/tutti-i-lavori/${project.id}`}
-           className={`block relative overflow-hidden bg-dark-200 ring-1 ring-inset ring-light/10 shadow-glass h-full w-full rounded-none group flex flex-col justify-end transition-all duration-300 group-hover:ring-0 group-hover:bg-dark-100 ${ratioClasses[size]}`}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => {
+            setIsHovering(false);
+            setCurrentImageIndex(0);
+          }}
+           className={`block relative overflow-hidden bg-white ring-1 ring-inset ring-light/10 shadow-glass h-full w-full rounded-none group flex flex-col justify-end transition-all duration-300 group-hover:ring-0 group-hover:bg-dark-100 ${ratioClasses[size]}`}
         >
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center bg-white">
             {!imageError ? (
-              <img
-                src={project.thumbUrl}
+              <motion.img
+                key={displayImage}
+                src={displayImage}
                 alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                 onError={() => setImageError(true)}
               />
             ) : (
@@ -55,20 +93,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, size = '1x1' }) => {
               </div>
             )}
           </div>
-          
-        {/* Dark overlay and centered text reveal */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
-            <h3 className="text-white text-xl font-heading opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              {project.title}
-            </h3>
-          </div>
 
-          {/* Bottom gradient and client name */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 pb-3 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none">
-            <span className="text-yellow-400 text-[10px] font-bold uppercase tracking-widest opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-              {project.title}
-            </span>
-          </div>
         </Link>
       </motion.div>
     </motion.div>

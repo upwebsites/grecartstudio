@@ -14,8 +14,12 @@ const am: Project = {
   id: "am",
   title: "AM",
   description: "Materiale PDF per il cliente AM.",
-  thumbUrl: "/copertine_projectcard/am.png",
-  imageUrls: [],
+  thumbUrl: "/LoghiLavori/Logo_AM.png",
+  imageUrls: [
+    "/scorrimento_immagini/am/am1.png",
+    "/scorrimento_immagini/am/am2.png",
+    "/scorrimento_immagini/am/am3.png"
+  ],
   pdfUrl: "/PDF/AM_01_2026.pdf"
 };
 
@@ -23,8 +27,12 @@ const bimarket: Project = {
   id: "bimarket",
   title: "Bimarket",
   description: "Materiale PDF per Bimarket.",
-  thumbUrl: "/copertine_projectcard/bimarket.png",
-  imageUrls: [],
+  thumbUrl: "/LoghiLavori/Logo_Bimarket.png",
+  imageUrls: [
+    "/scorrimento_immagini/bimarket/Bimarket 2025_17_Pagina_1.png",
+    "/scorrimento_immagini/bimarket/Bimarket 2025_17_Pagina_2.png",
+    "/scorrimento_immagini/bimarket/Bimarket 2025_17_Pagina_3.png"
+  ],
   pdfUrl: "/PDF/Bimarket 2025_17.pdf"
 };
 
@@ -32,8 +40,12 @@ const bitar: Project = {
   id: "bitar",
   title: "Bitar",
   description: "Materiale PDF per Bitar.",
-  thumbUrl: "/copertine_projectcard/bitar.png",
-  imageUrls: [],
+  thumbUrl: "/LoghiLavori/Logo_Bitar.png",
+  imageUrls: [
+    "/scorrimento_immagini/bitar/BITAR_COMPLETO_Pagina_1.png",
+    "/scorrimento_immagini/bitar/BITAR_COMPLETO_Pagina_2.png",
+    "/scorrimento_immagini/bitar/BITAR_COMPLETO_Pagina_3.png"
+  ],
   pdfUrl: "/PDF/BITAR_COMPLETO.pdf"
 };
 
@@ -41,8 +53,12 @@ const delizie: Project = {
   id: "le-delizie-del-sud",
   title: "Le Delizie Del Sud",
   description: "Materiale promozionale integrato: CANVASS, Progetto Pulito, PET FOOD e Supermercati accorpati per il brand Le delizie del sud.",
-  thumbUrl: "/copertine_projectcard/ledeliziedelsud.png",
-  imageUrls: [],
+  thumbUrl: "/LoghiLavori/Logo_Delizie.png",
+  imageUrls: [
+    "/scorrimento_immagini/delizie/2026_05_SPECIALI_Pagina_1.png",
+    "/scorrimento_immagini/delizie/2026_05_SPECIALI_Pagina_2.png",
+    "/scorrimento_immagini/delizie/2026_05_SPECIALI_Pagina_3.png"
+  ],
   pdfUrls: [
     "/PDF/CANVASS_2026_01_BASSA.pdf",
     "/PDF/NO FOOD_2026_01.pdf",
@@ -55,8 +71,12 @@ const merini: Project = {
   id: "merini-overline",
   title: "Merini Overline",
   description: "Catalogo completo Merini Overline: Linea Consumer, Linea Professional Altri Prodotti, Linea Professional Shampoo e Mockup Overline Academy.",
-  thumbUrl: "/copertine_projectcard/merinioverline.png",
-  imageUrls: [],
+  thumbUrl: "/LoghiLavori/Logo_Merini.png",
+  imageUrls: [
+    "/scorrimento_immagini/merini/MERINI_LINEA_CONSUMER_Pagina_1.png",
+    "/scorrimento_immagini/merini/MERINI_LINEA_CONSUMER_Pagina_2.png",
+    "/scorrimento_immagini/merini/MERINI_LINEA_CONSUMER_Pagina_3.png"
+  ],
   pdfUrls: [
     "/PDF/MERINI_LINEA_CONSUMER.pdf",
     "/PDF/MERINI_LINEA_PROFESSIONAL_ALTRI_PRODOTTI.pdf",
@@ -69,8 +89,12 @@ const diBlasio: Project = {
   id: "di-blasio",
   title: "Di Blasio",
   description: "Materiale PDF per Di Blasio.",
-  thumbUrl: "/copertine_projectcard/diblasio.png",
-  imageUrls: [],
+  thumbUrl: "/LoghiLavori/Logo_DiBlasio.png",
+  imageUrls: [
+    "/scorrimento_immagini/diblasio/DI_BLASIO_2026_01_Pagina_1.png",
+    "/scorrimento_immagini/diblasio/DI_BLASIO_2026_01_Pagina_2.png",
+    "/scorrimento_immagini/diblasio/DI_BLASIO_2026_01_Pagina_3.png"
+  ],
   pdfUrl: "/PDF/DI_BLASIO_2026_01.pdf"
 };
 
@@ -78,8 +102,11 @@ const drowssap: Project = {
   id: "drowssap",
   title: "Drowssap",
   description: "Materiale PDF per Drowssap.",
-  thumbUrl: "/copertine_projectcard/drowssap.png",
-  imageUrls: [],
+  thumbUrl: "/LoghiLavori/Logo_Drowssap.png",
+  imageUrls: [
+    "/scorrimento_immagini/drowssap/DROWSSAP_Brochure60x20_REV03_bozza_Pagina_1.png",
+    "/scorrimento_immagini/drowssap/DROWSSAP_Brochure60x20_REV03_bozza_Pagina_2.png"
+  ],
   pdfUrl: "/PDF/DROWSSAP_Brochure60x20_REV03_bozza.pdf"
 };
 
@@ -87,8 +114,12 @@ const frescohouse: Project = {
   id: "frescohouse",
   title: "FrescoHouse",
   description: "Materiale PDF per FrescoHouse.",
-  thumbUrl: "/copertine_projectcard/frescohouse.png",
-  imageUrls: [],
+  thumbUrl: "/LoghiLavori/Logo_FrescoHouse.png",
+  imageUrls: [
+    "/scorrimento_immagini/frescohouse/IPERFRESCO_2026_12_Pagina_1.png",
+    "/scorrimento_immagini/frescohouse/IPERFRESCO_2026_12_Pagina_2.png",
+    "/scorrimento_immagini/frescohouse/IPERFRESCO_2026_12_Pagina_3.png"
+  ],
   pdfUrl: "/PDF/IPERFRESCO_2026_01.pdf"
 };
 
@@ -96,8 +127,10 @@ const litiberi: Project = {
   id: "litiberi",
   title: "Litiberi",
   description: "Entrambi i lavori per Litiberi.",
-  thumbUrl: "/copertine_projectcard/ltiiberi.png",
-  imageUrls: [],
+  thumbUrl: "/LoghiLavori/Logo_Litiberi.png",
+  imageUrls: [
+    "/scorrimento_immagini/litiberi/LITIBERI_Manifesto 70x100.png"
+  ],
   pdfUrls: [
     "/PDF/LITIBERI_6x3 litiberi.pdf",
     "/PDF/LITIBERI_Manifesto 70x100.pdf"
@@ -108,8 +141,12 @@ const pac: Project = {
   id: "pac",
   title: "PAC",
   description: "Materiale PDF per PAC.",
-  thumbUrl: "/copertine_projectcard/pac.png",
-  imageUrls: [],
+  thumbUrl: "/LoghiLavori/Logo_Pac.png",
+  imageUrls: [
+    "/scorrimento_immagini/pac/PAC CASH_2026_01__Pagina_1.png",
+    "/scorrimento_immagini/pac/PAC CASH_2026_01__Pagina_2.png",
+    "/scorrimento_immagini/pac/PAC CASH_2026_01__Pagina_3.png"
+  ],
   pdfUrl: "/PDF/PAC CASH_2026_01_.pdf"
 };
 
@@ -117,8 +154,13 @@ const resource: Project = {
   id: "resourceconsulting",
   title: "ResourceConsulting",
   description: "Materiale PDF per ResourceConsulting.",
-  thumbUrl: "/copertine_projectcard/resourceconsulting.png",
-  imageUrls: [],
+  thumbUrl: "/LoghiLavori/Logo_Resource.png",
+  imageUrls: [
+    "/scorrimento_immagini/resource/Pagine da ResourceConsulting_Catalogo.pdf_Pagina_1.png",
+    "/scorrimento_immagini/resource/Pagine da ResourceConsulting_Catalogo.pdf_Pagina_2.png",
+    "/scorrimento_immagini/resource/Pagine da ResourceConsulting_Catalogo.pdf_Pagina_3.png",
+    "/scorrimento_immagini/resource/Pagine da ResourceConsulting_Catalogo.pdf_Pagina_4.png"
+  ],
   pdfUrl: "/PDF/ResourceConsulting_Catalogo.pdf"
 };
 
@@ -126,13 +168,11 @@ const madeInRome: Project = {
   id: "made-in-rome",
   title: "Made In Rome",
   description: "Catalogo PDF per il cliente Made In Rome.",
-  thumbUrl: "/copertine_projectcard/madeinrome.png",
+  thumbUrl: "/LoghiLavori/Logo_MadeInRome.png",
   imageUrls: [
-    "/images/portfolio/madeinrome1.jpeg",
-    "/images/portfolio/madeinrome2.jpeg",
-    "/images/portfolio/madeinrome3.jpeg",
-    "/images/portfolio/madeinrome4.jpeg",
-    "/images/portfolio/madeinrome5.jpeg"
+    "/scorrimento_immagini/madeinrome/MadeInRome_Tours_Catalogue_Complete_DoublePage_Preview_Pagina_1.png",
+    "/scorrimento_immagini/madeinrome/MadeInRome_Tours_Catalogue_Complete_DoublePage_Preview_Pagina_2.png",
+    "/scorrimento_immagini/madeinrome/MadeInRome_Tours_Catalogue_Complete_DoublePage_Preview_Pagina_3.png"
   ],
   pdfUrl: "/PDF/MadeInRome_Tours_Catalogue_Complete_DoublePage_Preview.pdf"
 };
@@ -143,7 +183,6 @@ const villaBelvedere: Project = {
   description: "Rappresentazione fotografica e grafica del progetto Villa Belvedere.",
   thumbUrl: "/images/villabelvedere01.png",
   imageUrls: [
-    "/images/villabelvedere01.png",
     "/images/villabelvedere02.png",
     "/images/villabelvedere03.png",
     "/images/villabelvedere04.png",
@@ -156,8 +195,11 @@ const negozietto: Project = {
   id: "il-negozietto",
   title: "Il Negozietto",
   description: "Materiale PDF per Il Negozietto.",
-  thumbUrl: "/copertine_projectcard/ilnegozietto.png",
-  imageUrls: [],
+  thumbUrl: "/LoghiLavori/Logo_IlNegozietto.png",
+  imageUrls: [
+    "/scorrimento_immagini/ilnegozietto/IL NEGOZIETTO_05_2026_Pagina_1.png",
+    "/scorrimento_immagini/ilnegozietto/IL NEGOZIETTO_05_2026_Pagina_2.png"
+  ],
   pdfUrl: "/PDF/IL NEGOZIETTO_05_2026.pdf"
 };
 
