@@ -74,7 +74,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, size = '1x1' }) => {
           }}
            className={`block relative overflow-hidden bg-white ring-1 ring-inset ring-light/10 shadow-glass h-full w-full rounded-none group flex flex-col justify-end transition-all duration-300 group-hover:ring-0 group-hover:bg-dark-100 ${ratioClasses[size]}`}
         >
-          <div className="absolute inset-0 flex items-center justify-center bg-white">
+          <div className="absolute inset-0 flex items-center justify-center bg-white p-6">
             {!imageError ? (
               <motion.img
                 key={displayImage}
