@@ -22,7 +22,7 @@ const PortfolioPage: React.FC = () => {
 
   const getProjectSize = (project: any, index: number, total: number) => {
     // Force Villa Belvedere and Il Negozietto to be large to fill space
-    if (project.id === 'villa-belvedere' || project.id === 'il-negozietto') return '2x1';
+    if (project.id === 'villa-belvedere' || project.id === 'il-negozietto') return '3x1';
 
     // Base asymmetric pattern
     let size: '1x1' | '2x1' | '2x2';
@@ -32,10 +32,10 @@ const PortfolioPage: React.FC = () => {
 
     // Correction logic for the last element to ensure "Zero-Hole"
     if (index === total - 1) {
-      const currentArea = allProjects.reduce((acc, p, i) => {
-          if (i === index) return acc;
-          if (p.id === 'villa-belvedere' || p.id === 'il-negozietto') return acc + 2;
-          const s = (i % 4 === 0) ? 4 : (i % 3 === 0) ? 2 : 1;
+       const currentArea = allProjects.reduce((acc, p, i) => {
+           if (i === index) return acc;
+           if (p.id === 'villa-belvedere' || p.id === 'il-negozietto') return acc + 3;
+           const s = (i % 4 === 0) ? 4 : (i % 3 === 0) ? 2 : 1;
         return acc + s;
       }, 0);
 

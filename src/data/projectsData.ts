@@ -204,16 +204,16 @@ const negozietto: Project = {
 };
 
 export const allProjects: Project[] = [
-  am,
-  bimarket,
-  bitar,
   delizie,
-  merini,
+  bitar,
+  bimarket,
+  am,
+  pac,
   diBlasio,
   drowssap,
   frescohouse,
   litiberi,
-  pac,
+  merini,
   resource,
   madeInRome,
   villaBelvedere,
