@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${navbarClass}`}>
       <div className="container flex justify-between items-center">
-        <Link to="/" className="flex items-center group relative z-50" onClick={closeMenu}>
+        <Link to="/" className="flex items-center group relative z-[60]" onClick={closeMenu}>
           <motion.div 
             whileHover={{ rotate: 180 }} 
             transition={{ duration: 0.6, ease: "easeInOut" }}
@@ -84,7 +84,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white focus:outline-none relative z-50 p-2"
+          className="md:hidden text-white focus:outline-none relative z-[60] p-2"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -100,7 +100,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-dark z-40 md:hidden pt-32 pb-10 overflow-y-auto flex flex-col justify-center border-b border-light/5 shadow-glass"
+            className="fixed inset-0 bg-dark z-50 md:hidden pt-32 pb-10 overflow-y-auto flex flex-col justify-center border-b border-light/5 shadow-glass"
           >
             <nav className="container flex flex-col items-center space-y-8 text-center px-6">
               {navLinks.map((link) => (

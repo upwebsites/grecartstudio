@@ -203,6 +203,28 @@ const negozietto: Project = {
   pdfUrl: "/PDF/IL NEGOZIETTO_05_2026.pdf"
 };
 
+const industriaGraficaSimeoni: Project = {
+  id: "industria-grafica-simeoni",
+  title: "Industria Grafica Simeoni",
+  description: "Materiale grafico per Industria Grafica Simeoni.",
+  thumbUrl: "/LoghiLavori/Logo_IndustriaGraficaSimeoni.webp",
+  imageUrls: [
+    "/industria_grafica_simeoni/WhatsApp Image 2026-05-06 at 00.30.34.jpeg",
+    "/industria_grafica_simeoni/WhatsApp Image 2026-05-06 at 00.30.34 (1).jpeg",
+    "/industria_grafica_simeoni/WhatsApp Image 2026-05-06 at 00.30.35.jpeg",
+    "/industria_grafica_simeoni/WhatsApp Image 2026-05-06 at 00.30.35 (1).jpeg",
+    "/industria_grafica_simeoni/WhatsApp Image 2026-05-06 at 00.30.35 (2).jpeg",
+    "/industria_grafica_simeoni/WhatsApp Image 2026-05-06 at 00.30.35 (3).jpeg",
+    "/industria_grafica_simeoni/WhatsApp Image 2026-05-06 at 00.30.35 (4).jpeg",
+    "/industria_grafica_simeoni/WhatsApp Image 2026-05-06 at 00.30.36.jpeg",
+    "/industria_grafica_simeoni/WhatsApp Image 2026-05-06 at 00.30.36 (1).jpeg",
+    "/industria_grafica_simeoni/WhatsApp Image 2026-05-06 at 00.30.36 (2).jpeg",
+    "/industria_grafica_simeoni/WhatsApp Image 2026-05-06 at 00.30.36 (3).jpeg",
+    "/industria_grafica_simeoni/WhatsApp Image 2026-05-06 at 00.30.36 (4).jpeg",
+    "/industria_grafica_simeoni/WhatsApp Image 2026-05-06 at 00.30.36 (5).jpeg"
+  ]
+};
+
 export const allProjects: Project[] = [
   delizie,
   bitar,
@@ -217,5 +239,6 @@ export const allProjects: Project[] = [
   resource,
   madeInRome,
   villaBelvedere,
-  negozietto
+  negozietto,
+  industriaGraficaSimeoni
 ];
