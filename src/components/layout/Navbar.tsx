@@ -17,6 +17,14 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMenuOpen]);
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -84,7 +92,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white focus:outline-none relative z-[60] p-2"
+          className="md:hidden text-white focus:outline-none relative z-[110] p-2"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -93,15 +101,15 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-dark z-50 md:hidden pt-32 pb-10 overflow-y-auto flex flex-col justify-center border-b border-light/5 shadow-glass"
-          >
+       <AnimatePresence>
+         {isMenuOpen && (
+           <motion.div
+             initial={{ opacity: 0, scale: 1.1 }}
+             animate={{ opacity: 1, scale: 1 }}
+             exit={{ opacity: 0, scale: 1.1 }}
+             transition={{ duration: 0.4, ease: "easeOut" }}
+             className="fixed inset-0 bg-dark z-[100] md:hidden pt-32 pb-10 overflow-y-auto flex flex-col justify-center border-b border-light/5 shadow-glass"
+           >
             <nav className="container flex flex-col items-center space-y-8 text-center px-6">
               {navLinks.map((link) => (
                 <NavLink

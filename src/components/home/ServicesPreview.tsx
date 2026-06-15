@@ -67,7 +67,7 @@ const ServicesPreview: React.FC = () => {
   return (
     <section className="section bg-dark relative">
       <div className="container relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
           <div className="max-w-2xl">
             <motion.p 
               className="text-accent uppercase tracking-[0.2em] text-xs font-semibold mb-4"
@@ -78,7 +78,7 @@ const ServicesPreview: React.FC = () => {
               Cosa Facciamo
             </motion.p>
             <motion.h2 
-              className="text-white"
+              className="text-white text-left"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
