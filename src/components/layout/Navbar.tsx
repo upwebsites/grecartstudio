@@ -40,7 +40,8 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${navbarClass}`}>
+    <>
+      <header className={`fixed top-0 left-0 w-full z-[110] transition-all duration-500 ${navbarClass}`}>
       <div className="container flex justify-between items-center">
         <Link to="/" className="flex items-center group relative z-[60]" onClick={closeMenu}>
           <motion.div 
@@ -98,18 +99,19 @@ const Navbar: React.FC = () => {
         >
           {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
         </button>
-      </div>
+       </div>
+      </header>
 
       {/* Mobile Menu */}
-       <AnimatePresence>
-         {isMenuOpen && (
-           <motion.div
-             initial={{ opacity: 0, scale: 1.1 }}
-             animate={{ opacity: 1, scale: 1 }}
-             exit={{ opacity: 0, scale: 1.1 }}
-             transition={{ duration: 0.4, ease: "easeOut" }}
-             className="fixed inset-0 bg-dark z-[100] md:hidden pt-32 pb-10 overflow-y-auto flex flex-col justify-center border-b border-light/5 shadow-glass"
-           >
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.1 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="fixed inset-0 bg-dark z-[100] md:hidden pt-32 pb-10 overflow-y-auto flex flex-col justify-center border-b border-light/5 shadow-glass"
+          >
             <nav className="container flex flex-col items-center space-y-8 text-center px-6">
               {navLinks.map((link) => (
                 <NavLink
@@ -126,17 +128,17 @@ const Navbar: React.FC = () => {
                 </NavLink>
               ))}
                <Link
-                 to="/tutti-i-lavori"
-                 className="btn bg-white text-dark hover:bg-light w-full max-w-xs mt-8 flex items-center justify-center gap-2"
-                 onClick={closeMenu}
-               >
-                 <Briefcase size={18} />
-                 <span className="font-heading">Portfolio</span>
-               </Link>
-               <a
-                 href="#contact"
-                 className="btn btn-primary w-full max-w-xs mt-4"
-                 onClick={(e) => {
+                to="/tutti-i-lavori"
+                className="btn bg-white text-dark hover:bg-light w-full max-w-xs mt-8 flex items-center justify-center gap-2"
+                onClick={closeMenu}
+              >
+                <Briefcase size={18} />
+                <span className="font-heading">Portfolio</span>
+              </Link>
+              <a
+                href="#contact"
+                className="btn btn-primary w-full max-w-xs mt-4"
+                onClick={(e) => {
                   closeMenu();
                   if (window.location.pathname === '/') {
                     e.preventDefault();
@@ -150,7 +152,7 @@ const Navbar: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 };
 
