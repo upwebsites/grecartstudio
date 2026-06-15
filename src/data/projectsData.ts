@@ -203,6 +203,19 @@ const negozietto: Project = {
   pdfUrl: "/PDF/IL NEGOZIETTO_05_2026.pdf"
 };
 
+const fortuna: Project = {
+  id: "fortuna-srls",
+  title: "Fortuna SRLS",
+  description: "Sito web per la Fortuna SRLS.",
+  thumbUrl: "/LoghiLavori/Logo_fortunaedilizia.svg",
+  imageUrls: [
+    "/scorrimento_immagini/fortuna/Screenshot 2026-06-15 alle 15.35.09.png",
+    "/scorrimento_immagini/fortuna/Screenshot 2026-06-15 alle 15.35.24.png",
+    "/scorrimento_immagini/fortuna/Screenshot 2026-06-15 alle 15.35.30.png",
+    "/scorrimento_immagini/fortuna/Screenshot 2026-06-15 alle 15.35.37.png"
+  ]
+};
+
 const industriaGraficaSimeoni: Project = {
   id: "industria-grafica-simeoni",
   title: "Industria Grafica Simeoni",
@@ -240,5 +253,6 @@ export const allProjects: Project[] = [
   madeInRome,
   villaBelvedere,
   negozietto,
-  industriaGraficaSimeoni
+  industriaGraficaSimeoni,
+  fortuna
 ];
