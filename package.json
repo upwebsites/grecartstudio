@@ -15,6 +15,7 @@
     "generate-covers": "node scripts/generate-covers.mjs"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "framer-motion": "^11.0.14",
     "fs-extra": "^11.3.5",
     "lucide-react": "^0.344.0",

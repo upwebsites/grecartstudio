@@ -1,450 +1,504 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ChevronRight, ChevronLeft, ArrowRight } from 'lucide-react';
+import { ChevronRight, ChevronLeft, ArrowRight, X, Play, Pause, CheckCircle2, Zap, Target, Shield, Eye } from 'lucide-react';
 
-interface Chapter {
-  id: number;
-  title: string;
-  paragraphs: string[];
-  highlight: string;
-  imageUrl: string;
-  imageAlt: string;
-}
-
-const chapters: Chapter[] = [
+const chapters = [
   {
     id: 1,
-    title: "Creatività & Strategia: il nostro carburante",
-    paragraphs: [
-      "In oltre trent'anni di esperienza nel mondo della comunicazione, abbiamo imparato che per far brillare un'idea bisogna governare ogni suo battito.",
-      "Noi di Grecart non ci limitiamo a stampare: costruiamo strategie, raccontiamo storie, progettiamo esperienze visive che parlano al cuore del cliente.",
-      "Dalla carta al digitale, dalla stampa al web, mettiamo insieme creatività e tecnologia per offrire soluzioni agili, moderne e davvero su misura.",
-    ],
-    highlight: "Non inseguire i cambiamenti: con noi, anticipali.",
+    title: "Creatività & Strategia",
+    subtitle: "Il nostro carburante",
+    icon: Eye,
+    color: "from-violet-500 to-purple-600",
+    bgColor: "bg-violet-500/10",
+    textColor: "text-violet-400",
+    borderColor: "border-violet-500/30",
+    summary: "Oltre 30 anni di esperienza. Costruiamo strategie, raccontiamo storie, progettiamo esperienze visive.",
+    keyPoints: ["Strategia comunicativa su misura", "Storytelling visivo integrato", "Creatività + Tecnologia"],
     imageUrl: "/images/comelavoriamo/creativita.png",
-    imageAlt: "Team creativo in riunione",
   },
   {
     id: 2,
-    title: "La Prestampa secondo Grecart",
-    paragraphs: [
-      "Nel cuore pulsante del nostro laboratorio creativo, ogni stampa inizia molto prima della carta: nasce dalla precisione invisibile della prestampa.",
-      "Con tecnologia Esko Artwork e stazioni di lavoro su ambienti Mac e Windows, plasmiamo ogni progetto con strumenti aggiornati e raffinati. Ogni file PDF è accolto, analizzato e trasformato attraverso Colorbox di Enfocus, con un controllo Preflight che funziona come un direttore d'orchestra: esamina, corregge, ottimizza.",
-      "Le tue idee viaggiano su linee in fibra ottica dedicate e si imprimono su lastre attraverso due linee Kodak Creo completamente automatizzate, con preset di stampa CIP3: il massimo della coerenza cromatica, la minima possibilità di errore.",
-    ],
-    highlight: "Noi di Grecart non stampiamo solo: mettiamo a punto la sinfonia tecnica che precede l'inchiostro.",
+    title: "La Prestampa",
+    subtitle: "Precisione invisibile",
+    icon: Zap,
+    color: "from-cyan-500 to-teal-600",
+    bgColor: "bg-cyan-500/10",
+    textColor: "text-cyan-400",
+    borderColor: "border-cyan-500/30",
+    summary: "Tecnologia Esko Artwork, controllo Preflight con Colorbox Enfocus, linee Kodak Creo automatizzate.",
+    keyPoints: ["Controllo Preflight automatico", "Preset CIP3 per coerenza cromatica", "Fibra ottica dedicata"],
     imageUrl: "/images/comelavoriamo/prestampa.webp",
-    imageAlt: "Prestampa laboratorio creativo",
   },
   {
     id: 3,
-    title: "Stampa Roto-Offset: il respiro lungo della comunicazione",
-    paragraphs: [
-      "La stampa roto-offset è il nostro motore per l'alta tiratura, perfetta per chi ha bisogno di parlare in grande.",
-      "Volantini, giornali, riviste, brochure: grazie a macchine rotative a bobina, stampiamo su carta leggera con una velocità e precisione sorprendenti.",
-      "Affidati a Grecart per raggiungere ogni casa, ogni lettore, ogni passante.",
-    ],
-    highlight: "La nostra squadra assicura uniformità cromatica, fedeltà ai dettagli e performance costanti, anche sui supporti più delicati.",
+    title: "Stampa Roto-Offset",
+    subtitle: "Alta tiratura",
+    icon: Target,
+    color: "from-blue-500 to-indigo-600",
+    bgColor: "bg-blue-500/10",
+    textColor: "text-blue-400",
+    borderColor: "border-blue-500/30",
+    summary: "Macchine rotative a bobina per volantini, giornali, riviste, brochure con velocità e precisione sorprendenti.",
+    keyPoints: ["Alta velocità di stampa", "Uniformità cromatica garantita", "Supporti delicati gestiti"],
     imageUrl: "/images/comelavoriamo/rotoffset.jpg",
-    imageAlt: "Stampa roto-offset in azione",
   },
   {
     id: 4,
-    title: "Stampa Offset: precisione, eleganza, impatto",
-    paragraphs: [
-      "Quando il dettaglio fa la differenza, entra in scena la nostra stampa offset.",
-      "Su carta o cartone, a tirature elevate o per progetti editoriali e commerciali di grande valore, Grecart trasforma ogni file in una stampa che colpisce, persuade, comunica.",
-    ],
-    highlight: "I nostri impianti offset dialogano con il territorio: mettiamo le nostre macchine a disposizione anche delle tipografie locali, perché fare rete è parte della nostra identità.",
+    title: "Stampa Offset",
+    subtitle: "Precisione ed eleganza",
+    icon: Shield,
+    color: "from-amber-500 to-orange-600",
+    bgColor: "bg-amber-500/10",
+    textColor: "text-amber-400",
+    borderColor: "border-amber-500/30",
+    summary: "Su carta o cartone, tirature elevate per progetti editoriali e commerciali di grande valore.",
+    keyPoints: ["Dettaglio impeccabile", "Carta e cartone premium", "Rete con tipografie locali"],
     imageUrl: "/images/comelavoriamo/offset.jpg",
-    imageAlt: "Stampa offset su carta e cartone",
   },
   {
     id: 5,
-    title: "GDO: Dati, Grafica, Velocità.",
-    paragraphs: [
-      "La Grande Distribuzione ha i suoi tempi. Noi li anticipiamo.",
-      "Con un archivio proprietario di oltre 100.000 immagini e schede prodotto, sistemi automatici di impaginazione e stampa, e la capacità di gestire dati variabili su larga scala, Grecart è il partner ideale per la GDO.",
-      "Stampiamo tutto, dal biglietto da visita al poster 6×3, anche in pochissime copie. Personalizziamo ogni kit, spediamo ovunque.",
-    ],
-    highlight: "Il tuo punto vendita può ordinare direttamente con i nostri sistemi \"web to point\", e noi ci occupiamo del resto: grafica, stampa, logistica.",
+    title: "GDO",
+    subtitle: "Dati, Grafica, Velocità",
+    icon: Zap,
+    color: "from-emerald-500 to-green-600",
+    bgColor: "bg-emerald-500/10",
+    textColor: "text-emerald-400",
+    borderColor: "border-emerald-500/30",
+    summary: "Archivio di 100.000+ immagini, sistemi automatici di impaginazione, dati variabili su larga scala.",
+    keyPoints: ["100.000+ immagini proprietarie", "Web to point automatico", "Gestione dati variabili"],
     imageUrl: "/images/comelavoriamo/gdo.jpg",
-    imageAlt: "Gestione dati e grafica per la GDO",
   },
   {
     id: 6,
-    title: "Volantini Promozionali: milioni di copie, un solo cuore creativo",
-    paragraphs: [
-      "Ogni anno stampiamo milioni di volantini promozionali per le insegne più importanti, in Italia e in Europa.",
-      "Ma non è solo quantità: è qualità, tempestività e personalizzazione.",
-      "Ogni volantino può essere un messaggio unico per un target preciso. Non ci limitiamo a stampare: analizziamo i dati, personalizziamo, ottimizziamo.",
-    ],
-    highlight: "La comunicazione di massa ha bisogno di dettagli, e noi li conosciamo tutti.",
+    title: "Volantini",
+    subtitle: "Milioni di copie",
+    icon: Target,
+    color: "from-rose-500 to-red-600",
+    bgColor: "bg-rose-500/10",
+    textColor: "text-rose-400",
+    borderColor: "border-rose-500/30",
+    summary: "Milioni di volantini promozionali all'anno per le insegne più importanti in Italia e in Europa.",
+    keyPoints: ["Personalizzazione per target", "Analisi dati avanzata", "Qualità + Quantità"],
     imageUrl: "/images/comelavoriamo/volantini.jpg",
-    imageAlt: "Volantini promozionali in stampa",
   },
   {
     id: 7,
-    title: "Allestimento Punti Vendita: rendiamo visibile la tua voce",
-    paragraphs: [
-      "Là dove il cliente sceglie, ogni elemento conta.",
-      "Con la nostra divisione dedicata agli allestimenti per il punto vendita, trasformiamo spazi in esperienze.",
-      "Stampiamo manifesti, roll-up, pannelli, stopper, pendolini, display, su ogni tipo di materiale e in qualsiasi formato.",
-    ],
-    highlight: "Che siano promozioni o branding, ogni messaggio trova il suo supporto ideale, pronto a stupire, convincere, vendere.",
+    title: "Allestimenti",
+    subtitle: "Punti vendita",
+    icon: Eye,
+    color: "from-sky-500 to-cyan-600",
+    bgColor: "bg-sky-500/10",
+    textColor: "text-sky-400",
+    borderColor: "border-sky-500/30",
+    summary: "Manifesti, roll-up, pannelli, stopper, pendolini, display su ogni materiale e formato.",
+    keyPoints: ["Trasformiamo spazi in esperienze", "Ogni tipo di materiale", "Branding e promozione"],
     imageUrl: "/images/comelavoriamo/allestimento.jpg",
-    imageAlt: "Allestimento punto vendita",
   },
   {
     id: 8,
-    title: "Siti Web & E-Commerce: la tua identità, il nostro design",
-    paragraphs: [
-      "Un sito web è più di una vetrina: è la prima impressione che lasci.",
-      "A Grecart partiamo da un ascolto profondo: capiamo chi sei, dove vuoi andare, e costruiamo un sito che lo racconti con precisione visiva e funzionale.",
-      "Ogni progetto è responsive, pensato per offrire la miglior esperienza da ogni dispositivo. UX, UI, copy, immagini: ogni elemento è progettato per farti emergere online.",
-    ],
-    highlight: "E se vendi online, lo facciamo diventare il tuo miglior venditore.",
+    title: "Siti Web & E-Commerce",
+    subtitle: "Identità digitale",
+    icon: Shield,
+    color: "from-fuchsia-500 to-pink-600",
+    bgColor: "bg-fuchsia-500/10",
+    textColor: "text-fuchsia-400",
+    borderColor: "border-fuchsia-500/30",
+    summary: "Siti web responsive, UX/UI professionale, copywriting e immagini per emergere online.",
+    keyPoints: ["Design responsive premium", "UX/UI centrate sull'utente", "E-Commerce ad alte prestazioni"],
     imageUrl: "/images/comelavoriamo/ecommerce.jpg",
-    imageAlt: "Siti web e e-commerce design",
   },
 ];
 
+const methodData = [
+  { phase: "Analisi", desc: "Ascolto delle esigenze e definizione degli obiettivi", icon: Eye, percentage: 15 },
+  { phase: "Strategia", desc: "Pianificazione del percorso comunicativo", icon: Target, percentage: 20 },
+  { phase: "Creative", desc: "Sviluppo del concept e dei asset visivi", icon: Zap, percentage: 25 },
+  { phase: "Realizzazione", desc: "Produzione e controllo qualità", icon: Shield, percentage: 25 },
+  { phase: "Delivery", desc: "Consegna e supporto post-vendita", icon: CheckCircle2, percentage: 15 },
+];
+
 const ComeLavoriamoPage: React.FC = () => {
+  const [isExperienceOpen, setIsExperienceOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-  const [showSummary, setShowSummary] = useState(false);
-  const isHero = currentStep === 0;
-  const isFinal = currentStep === chapters.length + 1;
-  const activeChapter = isHero ? null : chapters[currentStep - 1];
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
 
-  const nextStep = () => {
-    if (currentStep < chapters.length + 1) {
-      setCurrentStep(prev => prev + 1);
-    }
-  };
+  const nextStep = useCallback(() => {
+    setCurrentStep(prev => (prev < chapters.length - 1 ? prev + 1 : prev));
+  }, []);
 
-  const prevStep = () => {
-    if (currentStep > 0) {
-      setCurrentStep(prev => prev - 1);
+  const prevStep = useCallback(() => {
+    setCurrentStep(prev => (prev > 0 ? prev - 1 : prev));
+  }, []);
+
+  useEffect(() => {
+    if (!isAutoPlay || !isExperienceOpen) return;
+    const timer = setInterval(nextStep, 5000);
+    return () => clearInterval(timer);
+  }, [isAutoPlay, isExperienceOpen, nextStep]);
+
+  useEffect(() => {
+    if (isExperienceOpen) {
+      document.body.style.overflow = 'hidden';
+      setCurrentStep(0);
+    } else {
+      document.body.style.overflow = '';
     }
-  };
+    return () => { document.body.style.overflow = ''; };
+  }, [isExperienceOpen]);
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (!isExperienceOpen) return;
+      if (e.key === 'Escape') setIsExperienceOpen(false);
+      if (e.key === 'ArrowRight') nextStep();
+      if (e.key === 'ArrowLeft') prevStep();
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [isExperienceOpen, nextStep, prevStep]);
+
+  const activeChapter = chapters[currentStep];
 
   return (
-    <div className="bg-dark min-h-screen text-white overflow-hidden relative font-sans">
-      {/* Dynamic Background Gradients */}
-       <div className="absolute inset-0 z-0 pointer-events-none">
-         <div 
-           className="absolute top-[-10%] left-[-10%] w-[70vw] h-[70vw] rounded-full bg-accent/20 blur-[120px] mix-blend-screen"
-         />
-         <div 
-           className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-light/10 blur-[100px] mix-blend-screen"
-         />
-       </div>
-
-      {/* Progress Bar */}
-      {!isHero && !isFinal && (
-        <div className="fixed top-0 left-0 w-full h-1 z-50 bg-white/10">
-          <motion.div 
-            className="h-full bg-accent"
-            initial={{ width: 0 }}
-            animate={{ width: `${(currentStep / (chapters.length + 1)) * 100}%` }}
-            transition={{ duration: 0.5 }}
-          />
+    <>
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center bg-dark overflow-hidden pt-20">
+        {/* Background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-accent/10 blur-[150px]" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-accent/5 blur-[120px]" />
         </div>
-      )}
 
-      <AnimatePresence mode="wait">
-        {isHero && (
-          <motion.section 
-            key="hero"
+        <div className="container relative z-10 text-center px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <p className="text-accent uppercase tracking-[0.3em] text-xs font-semibold mb-6 flex items-center justify-center gap-4">
+              <span className="w-8 h-[1px] bg-accent" />
+              Il Nostro Metodo
+              <span className="w-8 h-[1px] bg-accent" />
+            </p>
+
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-heading mb-6 leading-tight">
+              Come{' '}
+              <span className="italic font-light text-light/50">Lavoriamo</span>
+            </h1>
+
+            <p className="text-base sm:text-lg md:text-xl text-light/50 font-light max-w-2xl mx-auto mb-12 leading-relaxed">
+              Dalla prestampa alla distribuzione, ogni fase del nostro processo è orchestrata con precisione, creatività e tecnologia d'avanguardia.
+            </p>
+          </motion.div>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <button
+              onClick={() => setIsExperienceOpen(true)}
+              className="group flex items-center gap-3 px-8 py-4 bg-accent text-dark rounded-xl font-semibold uppercase tracking-widest text-sm hover:bg-accent-light hover:shadow-[0_0_30px_rgba(212,175,55,0.3)] transition-all duration-300"
+            >
+              <Play size={18} />
+              Inizia l'esperienza
+            </button>
+          </motion.div>
+        </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5 }}
+            className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-1.5"
+          >
+            <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Method Overview Section */}
+      <section className="py-20 sm:py-24 bg-dark-100 relative">
+        <div className="container px-4 sm:px-6">
+          <div className="text-center mb-16">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-accent uppercase tracking-[0.3em] text-xs font-semibold mb-4"
+            >
+              Il Metodo
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-white text-3xl sm:text-4xl font-heading"
+            >
+              8 Fasi, <span className="italic font-light text-light/50">un processo unico</span>
+            </motion.h2>
+          </div>
+
+          {/* Process Flow */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+            {chapters.map((chapter, i) => {
+              const Icon = chapter.icon;
+              return (
+                <motion.div
+                  key={chapter.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className={`p-5 rounded-xl border ${chapter.borderColor} ${chapter.bgColor} backdrop-blur-sm group cursor-pointer`}
+                  onClick={() => {
+                    setCurrentStep(i);
+                    setIsExperienceOpen(true);
+                  }}
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className={`text-2xl font-heading font-bold ${chapter.textColor} opacity-30`}>
+                      0{chapter.id}
+                    </span>
+                    <div className={`w-8 h-8 rounded-lg bg-dark/50 flex items-center justify-center ${chapter.textColor}`}>
+                      <Icon size={16} />
+                    </div>
+                  </div>
+                  <h3 className="text-white text-sm font-heading font-medium mb-1 group-hover:text-white transition-colors">
+                    {chapter.title}
+                  </h3>
+                  <p className="text-light/40 text-xs font-light">{chapter.subtitle}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Method Stats Table */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="glass-panel rounded-2xl border border-light/10 overflow-hidden max-w-4xl mx-auto"
+          >
+            <div className="p-6 border-b border-light/10">
+              <h3 className="text-white text-lg font-heading">Distribuzione del Metodo</h3>
+              <p className="text-light/40 text-sm font-light mt-1">Come distribuiamo risorse in ogni fase del processo</p>
+            </div>
+            <div className="divide-y divide-light/5">
+              {methodData.map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <div key={i} className="flex items-center gap-4 p-4 hover:bg-light/5 transition-colors">
+                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+                      <Icon size={18} className="text-accent" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-white text-sm font-medium">{item.phase}</span>
+                        <span className="text-accent text-sm font-heading font-bold">{item.percentage}%</span>
+                      </div>
+                      <div className="w-full h-1.5 bg-dark-200 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${item.percentage}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: i * 0.1 }}
+                          className="h-full bg-gradient-to-r from-accent-dark to-accent rounded-full"
+                        />
+                      </div>
+                      <p className="text-light/40 text-xs font-light mt-1">{item.desc}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-dark relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] rounded-full bg-accent/10 blur-[120px]" />
+        </div>
+        <div className="container relative z-10 text-center px-4 sm:px-6">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl md:text-5xl font-heading text-white mb-6"
+          >
+            Sei pronto a raccontare chi sei, <span className="italic font-light text-light/50">davvero</span>?
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-light/50 font-light max-w-xl mx-auto mb-10"
+          >
+            Contattaci per iniziare a scrivere la tua storia insieme a noi.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <Link to="/contatti" className="inline-flex items-center gap-3 px-8 py-4 bg-accent text-dark rounded-xl font-semibold uppercase tracking-widest text-sm hover:bg-accent-light hover:shadow-[0_0_30px_rgba(212,175,55,0.3)] transition-all duration-300">
+              Contattaci ora <ArrowRight size={18} />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Full-Screen Experience Popup */}
+      <AnimatePresence>
+        {isExperienceOpen && (
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.8 }}
-            className="relative h-screen flex items-center justify-center text-center px-6"
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] bg-dark"
           >
-            <div className="max-w-5xl mx-auto z-10">
-              <motion.p 
-                className="text-accent uppercase tracking-[0.3em] text-sm font-semibold mb-6 flex items-center justify-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <span className="w-12 h-[1px] bg-accent mr-4 inline-block"></span>
-                Il Nostro Processo
-                <span className="w-12 h-[1px] bg-accent ml-4 inline-block"></span>
-              </motion.p>
-
-              <motion.h1 
-                className="text-5xl md:text-8xl font-heading mb-8 leading-tight"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Come <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light italic font-light">Lavoriamo.</span>
-              </motion.h1>
-
-              <motion.p 
-                className="text-xl md:text-2xl text-light/60 font-light max-w-3xl mx-auto mb-12 leading-relaxed"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                Dalla prestampa alla distribuzione, ogni fase del nostro processo è orchestrata con precisione, creatività e tecnologia d'avanguardia.
-              </motion.p>
-
-               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                 <motion.button 
-                   onClick={nextStep}
-                   className="group relative px-8 py-4 bg-transparent border border-accent text-accent overflow-hidden transition-all hover:text-white"
-                   initial={{ opacity: 0 }}
-                   animate={{ opacity: 1 }}
-                   transition={{ delay: 1 }}
-                   whileHover={{ scale: 1.05 }}
-                   whileTap={{ scale: 0.95 }}
-                 >
-                   <span className="relative z-10 flex items-center gap-2 font-semibold uppercase tracking-widest text-sm">
-                     Inizia l'esperienza <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                   </span>
-                   <div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                 </motion.button>
-
-                 <motion.button 
-                   onClick={() => setShowSummary(true)}
-                   className="px-8 py-4 bg-transparent border border-white/20 text-white/60 hover:text-white hover:border-white transition-all"
-                   initial={{ opacity: 0 }}
-                   animate={{ opacity: 1 }}
-                   transition={{ delay: 1.2 }}
-                   whileHover={{ scale: 1.05 }}
-                   whileTap={{ scale: 0.95 }}
-                 >
-                   <span className="font-semibold uppercase tracking-widest text-sm">
-                     Leggi il resoconto
-                   </span>
-                 </motion.button>
-               </div>
+            {/* Progress bar */}
+            <div className="absolute top-0 left-0 w-full h-1 z-50 bg-white/10">
+              <motion.div
+                className="h-full bg-accent"
+                initial={{ width: 0 }}
+                animate={{ width: `${((currentStep + 1) / chapters.length) * 100}%` }}
+                transition={{ duration: 0.5 }}
+              />
             </div>
-          </motion.section>
-        )}
 
-        {!isHero && !isFinal && activeChapter && (
-          <motion.section 
-            key={`chapter-${activeChapter.id}`}
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="h-screen flex items-center justify-center px-6 relative"
-          >
-            <div className="container max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* Text Content */}
-              <div className="space-y-8 z-10">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
+            {/* Top bar */}
+            <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between p-4 sm:p-6">
+              <div className="flex items-center gap-3">
+                <span className="text-accent text-xs font-heading font-bold tracking-wider">
+                  0{currentStep + 1} / 0{chapters.length}
+                </span>
+                <span className="text-white/30 text-xs">|</span>
+                <span className="text-white/50 text-xs font-light hidden sm:inline">{activeChapter.title}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setIsAutoPlay(!isAutoPlay)}
+                  className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all"
                 >
-                  <p className="text-accent uppercase tracking-[0.3em] text-xs font-semibold mb-4">
-                    Step 0{activeChapter.id} / 08
-                  </p>
-                  <h2 className="text-4xl md:text-6xl font-heading mb-6 leading-tight">
-                    {activeChapter.title}
-                  </h2>
-                </motion.div>
+                  {isAutoPlay ? <Pause size={14} /> : <Play size={14} />}
+                </button>
+                <button
+                  onClick={() => setIsExperienceOpen(false)}
+                  className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all"
+                >
+                  <X size={14} />
+                </button>
+              </div>
+            </div>
 
-                <div className="space-y-6">
-                  {activeChapter.paragraphs.map((p, i) => (
-                    <motion.p 
-                      key={i} 
-                      className="text-light/60 font-light text-lg md:text-xl leading-relaxed"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.5 + (i * 0.2) }}
-                    >
-                      {p}
-                    </motion.p>
+            {/* Chapter Content */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeChapter.id}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.02 }}
+                transition={{ duration: 0.4 }}
+                className="h-full flex items-center justify-center px-4 sm:px-6 pt-16 pb-24"
+              >
+                <div className="container max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                  {/* Text */}
+                  <div className="space-y-6 order-2 lg:order-1">
+                    <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${activeChapter.bgColor} border ${activeChapter.borderColor} ${activeChapter.textColor} text-xs font-medium`}>
+                      <activeChapter.icon size={12} />
+                      {activeChapter.subtitle}
+                    </div>
+
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading text-white leading-tight">
+                      {activeChapter.title}
+                    </h2>
+
+                    <p className="text-light/60 font-light text-base sm:text-lg leading-relaxed">
+                      {activeChapter.summary}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {activeChapter.keyPoints.map((point, i) => (
+                        <span key={i} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-light/60 text-xs font-light">
+                          <CheckCircle2 size={10} className={activeChapter.textColor} />
+                          {point}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Image */}
+                  <div className="order-1 lg:order-2">
+                    <div className={`relative rounded-2xl overflow-hidden aspect-[4/3] border ${activeChapter.borderColor} shadow-2xl`}>
+                      <img
+                        src={activeChapter.imageUrl}
+                        alt={activeChapter.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent" />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Bottom Navigation */}
+            <div className="absolute bottom-0 left-0 right-0 z-50 p-4 sm:p-6">
+              <div className="flex items-center justify-between max-w-6xl mx-auto">
+                <button
+                  onClick={prevStep}
+                  disabled={currentStep === 0}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 text-white/60 text-xs uppercase tracking-wider font-medium hover:bg-white/5 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                >
+                  <ChevronLeft size={16} /> Indietro
+                </button>
+
+                {/* Dots */}
+                <div className="hidden sm:flex items-center gap-2">
+                  {chapters.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentStep(i)}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        i === currentStep ? 'w-8 bg-accent' : 'w-2 bg-white/20 hover:bg-white/40'
+                      }`}
+                    />
                   ))}
                 </div>
 
-                <motion.div 
-                  className="border-l-4 border-accent pl-6 py-2"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1 }}
+                <button
+                  onClick={nextStep}
+                  disabled={currentStep === chapters.length - 1}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-accent text-dark text-xs uppercase tracking-wider font-semibold hover:bg-accent-light disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                 >
-                  <p className="text-light/80 italic font-light text-xl leading-relaxed">
-                    {activeChapter.highlight}
-                  </p>
-                </motion.div>
+                  Avanti <ChevronRight size={16} />
+                </button>
               </div>
-
-              {/* Image Content */}
-              <motion.div 
-                className="relative group"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <div className="relative overflow-hidden rounded-2xl aspect-[4/3] shadow-2xl border border-white/10">
-                  <motion.img
-                    src={activeChapter.imageUrl}
-                    alt={activeChapter.imageAlt}
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 1 }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent opacity-60" />
-                </div>
-                {/* Decorative elements */}
-                <div className="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-accent/30 pointer-events-none" />
-                <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-accent/30 pointer-events-none" />
-              </motion.div>
             </div>
 
-            {/* Navigation Buttons */}
-            <div className="fixed bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-6 z-50">
-              <button 
-                onClick={prevStep}
-                className="p-4 rounded-full border border-white/20 hover:border-accent hover:text-accent transition-all bg-dark/50 backdrop-blur-md"
-                title="Precedente"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              
-              <div className="flex gap-2">
-                {chapters.map((_, i) => (
-                  <div 
-                    key={i} 
-                    className={`h-1.5 rounded-full transition-all duration-500 ${currentStep === i + 1 ? 'w-8 bg-accent' : 'w-2 bg-white/20'}`} 
-                  />
-                ))}
-              </div>
-
-              <button 
-                onClick={nextStep}
-                className="p-4 rounded-full border border-white/20 hover:border-accent hover:text-accent transition-all bg-dark/50 backdrop-blur-md"
-                title="Successivo"
-              >
-                <ChevronRight size={24} />
-              </button>
+            {/* Background gradient */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className={`absolute top-0 right-0 w-[50vw] h-[50vw] rounded-full bg-gradient-to-br ${activeChapter.color} opacity-5 blur-[150px]`} />
             </div>
-          </motion.section>
+          </motion.div>
         )}
-
-        {isFinal && (
-          <motion.section 
-            key="final"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-            className="h-screen flex items-center justify-center px-6 relative"
-          >
-            <div className="container max-w-4xl mx-auto text-center glass-panel p-12 md:p-20 rounded-3xl border border-white/10 backdrop-blur-xl relative z-10">
-              <motion.h2 
-                className="text-4xl md:text-6xl font-heading mb-8 text-white"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                Sei pronto a raccontare chi sei, <span className="italic font-light text-light/70">davvero</span>?
-              </motion.h2>
-              <motion.p 
-                className="text-xl text-light/50 font-light max-w-2xl mx-auto mb-12 leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Siamo Grecart, e la nostra missione è trasformare ogni tua esigenza comunicativa in una storia stampata, digitale, reale. Contattaci, iniziamo a scrivere la tua.
-              </motion.p>
-               <div className="flex flex-col items-center gap-6">
-                 <motion.div
-                   initial={{ opacity: 0, y: 20 }}
-                   animate={{ opacity: 1, y: 0 }}
-                   transition={{ duration: 0.8, delay: 0.4 }}
-                 >
-                   <Link to="/contatti" className="btn btn-primary px-12 py-5 inline-flex items-center gap-3 text-lg font-semibold">
-                     Contattaci ora <ArrowRight size={20} />
-                   </Link>
-                 </motion.div>
-
-                 <motion.button 
-                   onClick={() => setShowSummary(true)}
-                   className="text-light/60 hover:text-white transition-colors underline underline-offset-4 text-sm uppercase tracking-widest"
-                   initial={{ opacity: 0 }}
-                   animate={{ opacity: 1 }}
-                   transition={{ delay: 0.6 }}
-                 >
-                   Rileggi il resoconto del metodo
-                 </motion.button>
-               </div>
-            </div>
-            
-            {/* Final Background Glow */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[80vw] h-[80vw] rounded-full bg-accent/10 blur-[150px]" />
-            </div>
-          </motion.section>
-        )}
-       </AnimatePresence>
-
-       {/* Summary Overlay */}
-       <AnimatePresence>
-         {showSummary && (
-           <motion.div 
-             initial={{ opacity: 0 }}
-             animate={{ opacity: 1 }}
-             exit={{ opacity: 0 }}
-             className="fixed inset-0 z-[100] bg-dark/95 backdrop-blur-2xl overflow-y-auto p-6 md:p-12"
-           >
-             <div className="max-w-4xl mx-auto">
-               <div className="flex justify-between items-center mb-12">
-                 <h2 className="text-3xl md:text-5xl font-heading">Il Metodo <span className="italic font-light text-accent">Grecart</span></h2>
-                 <button 
-                   onClick={() => setShowSummary(false)}
-                   className="p-2 rounded-full border border-white/20 hover:border-white transition-all"
-                 >
-                   <span className="text-xs uppercase tracking-widest">Chiudi</span>
-                 </button>
-               </div>
-
-               <div className="space-y-16">
-                 {chapters.map((chapter, i) => (
-                   <div key={chapter.id} className="group">
-                     <div className="flex items-baseline gap-4 mb-4">
-                       <span className="text-accent font-heading text-2xl">0{i+1}</span>
-                       <h3 className="text-2xl md:text-3xl font-heading group-hover:text-accent transition-colors">{chapter.title}</h3>
-                     </div>
-                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                       <div className="space-y-4">
-                         {chapter.paragraphs.map((p, pi) => (
-                           <p key={pi} className="text-light/60 font-light leading-relaxed">{p}</p>
-                         ))}
-                       </div>
-                       <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
-                         <p className="text-accent italic font-light text-lg leading-relaxed">
-                           "{chapter.highlight}"
-                         </p>
-                       </div>
-                     </div>
-                   </div>
-                 ))}
-               </div>
-
-               <div className="mt-20 text-center">
-                 <button 
-                   onClick={() => setShowSummary(false)}
-                   className="px-8 py-4 border border-accent text-accent hover:bg-accent hover:text-white transition-all uppercase tracking-widest text-sm font-semibold"
-                 >
-                   Torna all'esperienza
-                 </button>
-               </div>
-             </div>
-           </motion.div>
-         )}
-       </AnimatePresence>
-     </div>
+      </AnimatePresence>
+    </>
   );
 };
 
