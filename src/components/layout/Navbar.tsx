@@ -220,6 +220,24 @@ const Navbar: React.FC = () => {
                   ))}
                 </nav>
 
+                {/* Portfolio Button */}
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 + navLinks.length * 0.06 }}
+                  className="mt-6"
+                >
+                  <Link
+                    to="/tutti-i-lavori"
+                    className="group flex items-center justify-between py-5 border-b border-white/5 text-white/70 hover:text-white transition-colors"
+                  >
+                    <span className="text-xl sm:text-2xl font-heading font-medium tracking-wide">Portfolio</span>
+                    <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/30 group-hover:bg-white/10 group-hover:text-white/60 transition-colors">
+                      <ArrowUpRight size={14} />
+                    </div>
+                  </Link>
+                </motion.div>
+
                 {/* Contact Info */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
