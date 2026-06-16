@@ -98,16 +98,12 @@ const Navbar: React.FC = () => {
                 }
               >
                 {({ isActive }) => (
-                  <>
+                  <span className="relative">
                     {link.name}
                     {isActive && (
-                      <motion.div
-                        layoutId="activeNav"
-                        className="absolute inset-0 bg-accent/10 border border-accent/20 rounded-lg -z-10"
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
+                      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-accent rounded-full" />
                     )}
-                  </>
+                  </span>
                 )}
               </NavLink>
             ))}
