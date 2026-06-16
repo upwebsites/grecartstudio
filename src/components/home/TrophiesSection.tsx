@@ -25,7 +25,7 @@ const TrophiesSection: React.FC = () => {
             <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-slate-950/90 via-transparent to-transparent pointer-events-none" />
             <div className="relative z-10 space-y-10">
               <div className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-accent font-semibold">
-                <Star size={12} className="animate-pulse" />
+                <Star size={12} />
                 Eccellenza e Competizione
               </div>
 

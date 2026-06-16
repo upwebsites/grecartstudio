@@ -17,8 +17,8 @@ const PortfolioPreview: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-blue-400/10 to-cyan-400/10 pointer-events-none" />
       
       {/* Animated Blue Gradient Orbs */}
-      <div className="absolute -top-24 -left-24 w-96 h-96 bg-gradient-to-br from-blue-500 via-blue-700 to-indigo-800 rounded-full blur-[120px] opacity-20 animate-pulse pointer-events-none" />
-      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-gradient-to-br from-indigo-800 via-blue-700 to-blue-500 rounded-full blur-[120px] opacity-20 animate-pulse pointer-events-none" />
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-gradient-to-br from-blue-500 via-blue-700 to-indigo-800 rounded-full blur-[120px] opacity-20 pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-gradient-to-br from-indigo-800 via-blue-700 to-blue-500 rounded-full blur-[120px] opacity-20 pointer-events-none" />
 
       <div className="container relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-20">
@@ -30,7 +30,7 @@ const PortfolioPreview: React.FC = () => {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-600/20 via-blue-400/20 to-cyan-400/20 border border-white/10 text-white text-xs uppercase tracking-widest font-semibold mb-8"
           >
-            <Sparkles size={12} className="text-blue-400 animate-pulse" />
+            <Sparkles size={12} className="text-blue-400" />
             Selected Works
           </motion.div>
 

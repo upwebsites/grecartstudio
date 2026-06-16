@@ -4,6 +4,7 @@ import ServicesPreview from '../components/home/ServicesPreview';
 import PortfolioPreview from '../components/home/PortfolioPreview';
 import InstagramHeroSection from '../components/home/InstagramHeroSection';
 import MeriniOverlineSection from '../components/home/MeriniOverlineSection';
+import PrintingHeroSection from '../components/home/PrintingHeroSection';
 import TrophiesSection from '../components/home/TrophiesSection';
 import UpolCertificationSection from '../components/home/UpolCertificationSection';
 import Testimonials from '../components/home/Testimonials';
@@ -17,6 +18,7 @@ const HomePage: React.FC = () => {
        <PortfolioPreview />
        <InstagramHeroSection />
        <MeriniOverlineSection />
+       <PrintingHeroSection />
        <TrophiesSection />
        <UpolCertificationSection />
        <Testimonials />

@@ -9,8 +9,8 @@ const InstagramHeroSection: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-[#405de6]/10 via-[#c13584]/10 to-[#fd1d1d]/10 pointer-events-none" />
       
       {/* Animated Gradient Orbs for that "Instagram" feel */}
-      <div className="absolute -top-24 -left-24 w-96 h-96 bg-gradient-to-br from-[#f09433] via-[#dc2743] to-[#bc1888] rounded-full blur-[120px] opacity-20 animate-pulse pointer-events-none" />
-      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-gradient-to-br from-[#bc1888] via-[#dc2743] to-[#f09433] rounded-full blur-[120px] opacity-20 animate-pulse pointer-events-none" />
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-gradient-to-br from-[#f09433] via-[#dc2743] to-[#bc1888] rounded-full blur-[120px] opacity-20 pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-gradient-to-br from-[#bc1888] via-[#dc2743] to-[#f09433] rounded-full blur-[120px] opacity-20 pointer-events-none" />
 
       <div className="container relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
@@ -22,7 +22,7 @@ const InstagramHeroSection: React.FC = () => {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#f09433]/20 via-[#dc2743]/20 to-[#bc1888]/20 border border-white/10 text-white text-xs uppercase tracking-widest font-semibold mb-8"
           >
-            <Sparkles size={12} className="text-[#dc2743] animate-pulse" />
+            <Sparkles size={12} className="text-[#dc2743]" />
             Stay Connected
           </motion.div>
 

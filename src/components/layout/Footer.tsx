@@ -46,6 +46,9 @@ const Footer: React.FC = () => {
                 <Link to="/tutti-i-lavori" className="text-light/60 hover:text-accent transition-colors text-sm uppercase tracking-wider">Portfolio</Link>
               </li>
               <li>
+                <Link to="/prodotti-che-stampiamo" className="text-light/60 hover:text-accent transition-colors text-sm uppercase tracking-wider">Prodotti</Link>
+              </li>
+              <li>
                 <Link to="/come-lavoriamo" className="text-light/60 hover:text-accent transition-colors text-sm uppercase tracking-wider">Come Lavoriamo</Link>
               </li>
             </ul>

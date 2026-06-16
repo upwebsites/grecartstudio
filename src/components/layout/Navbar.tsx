@@ -35,6 +35,7 @@ const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Servizi', path: '/servizi' },
+    { name: 'Prodotti', path: '/prodotti-che-stampiamo' },
     { name: 'Come Lavoriamo', path: '/come-lavoriamo' },
     { name: 'Contatti', path: '/contatti' },
   ];

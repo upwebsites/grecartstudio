@@ -29,6 +29,12 @@
     color: white;
     letter-spacing: -0.025em;
     line-height: 1.1;
+    overflow: visible;
+  }
+
+  h1 em, h1 i, h2 em, h2 i, h3 em, h3 i, h4 em, h4 i, h5 em, h5 i, h6 em, h6 i {
+    overflow: visible;
+    padding-right: 0.05em;
   }
 
   h1 { font-size: clamp(2.5rem, 8vw, 6rem); }

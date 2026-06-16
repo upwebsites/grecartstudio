@@ -116,7 +116,7 @@ const ServicesPage: React.FC = () => {
     <>
       {/* Hero Section with Dynamic Gradient */}
       <section className="bg-dark pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-accent/10 rounded-full blur-[120px] z-0 animate-pulse"></div>
+        <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-accent/10 rounded-full blur-[120px] z-0"></div>
         <div className="absolute bottom-0 left-0 w-[40vw] h-[40vw] bg-accent/5 rounded-full blur-[100px] z-0"></div>
         
         <div className="container relative z-10 text-center">

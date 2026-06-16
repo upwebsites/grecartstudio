@@ -47,7 +47,7 @@ const MeriniOverlineSection: React.FC = () => {
               transition={{ duration: 0.8 }}
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs uppercase tracking-widest font-semibold mb-6">
-                <Sparkles size={12} className="animate-pulse" />
+                <Sparkles size={12} />
                 Sinergia e Art Direction
               </div>
               
@@ -84,7 +84,7 @@ const MeriniOverlineSection: React.FC = () => {
                
                <div className="relative flex flex-col items-center text-center p-8 rounded-3xl border border-accent/30 bg-gradient-to-b from-white/5 to-transparent backdrop-blur-sm shadow-2xl">
                  <div className="relative mb-6">
-                   <div className="absolute -inset-2 bg-accent/20 rounded-full blur-md animate-pulse"></div>
+                   <div className="absolute -inset-2 bg-accent/20 rounded-full blur-md"></div>
                    <img 
                      src="/LoghiLavori/Logo_Merini.png" 
                      alt="Logo Merini" 

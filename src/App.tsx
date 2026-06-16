@@ -10,6 +10,7 @@ import ProjectDetailPage from './pages/ProjectDetailPage';
 import ContactPage from './pages/ContactPage';
 import ComeLavoriamoPage from './pages/ComeLavoriamoPage';
 import AllWorksPage from './pages/AllWorksPage';
+import PrintingPage from './pages/PrintingPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/come-lavoriamo" element={<ComeLavoriamoPage />} />
           <Route path="/tutti-i-lavori" element={<AllWorksPage />} />
           <Route path="/tutti-i-lavori/:projectId" element={<ProjectDetailPage />} />
+          <Route path="/prodotti-che-stampiamo" element={<PrintingPage />} />
         </Routes>
       </main>
       <Footer />

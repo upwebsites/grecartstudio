@@ -7,7 +7,7 @@ const HeroSection: React.FC = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-dark">
       {/* Abstract Animated Glow Background */}
-      <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-accent/20 blur-[120px] mix-blend-screen opacity-50 animate-pulse"></div>
+      <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-accent/20 blur-[120px] mix-blend-screen opacity-50"></div>
       <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-light/5 blur-[100px] mix-blend-screen opacity-30"></div>
       
       {/* Decorative Grid Overlay (optional, subtle texture) */}
